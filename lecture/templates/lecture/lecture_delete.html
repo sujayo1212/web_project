@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <title>delete</title>
+</head>
+<body>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <h3>{{ lecture.title }} delete</h3>
+        <input type="submit" value="delete">
+        <input type="button" value="back" onClick="history.go(-1)">
+    </form>
+</div>
+</body>
+</html>
