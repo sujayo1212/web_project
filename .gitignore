@@ -231,7 +231,7 @@ fabric.properties
 # See https://github.com/joeblau/gitignore.io/issues/186 and https://github.com/joeblau/gitignore.io/issues/360
 
 .idea/
-# migrations/
+migrations/
 _media/
 
 # Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
