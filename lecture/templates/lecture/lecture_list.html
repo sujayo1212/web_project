@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf8">
+    <title>lecture list</title>
+</head>
+<body>
+    {% for l in lecture_list %}
+        <h2><a href="{{ l.get_absolute_url }}">{{ l.class_name }}</a></h2>
+        </hr>
+    {% endfor %}
+    <a href="{% url 'lecture:lecture_create' %}" class="btn btn-primary">강의 등록</a>
+</body>
+</html>
