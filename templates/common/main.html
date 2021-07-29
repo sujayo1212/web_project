@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <a href="{% url 'common:logout' %}">로그아웃</a><br>
+    <a href="/admin">admin 사이트로</a>
+    {% else %}
+    <a href="{% url 'common:login' %}">로그인</a><br>
+    {% endif %}
+</body>
+</html>
