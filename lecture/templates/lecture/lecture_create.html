@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <title>create</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block main_area %}
 <div class="container">
     <form method="post" class="post-form my-3" action="{% url 'lecture:lecture_create' %}">
         {% csrf_token %}
@@ -45,5 +39,4 @@
         <button type="submit" class="btn btn-primary">저장하기</button>
     </form>
 </div>
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="utf8">
-    <title>lecture - {{ lecture.class_name}}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block main_area %}
+
 <h2>{{ lecture.class_name }}</h2>
 <h3>{{ lecture.subject }}</h3>
 <h3>{{ lecture.detail_subject }}</h3>
@@ -15,6 +11,4 @@
 <a href="/lecture/{{lecture.id}}/delete">삭제</a>
 <a href="{% url 'lecture:index' %}">뒤로</a>
 
-</hr>
-</body>
-</html>
+{% endblock %}

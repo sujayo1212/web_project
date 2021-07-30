@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <title>update</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block main_area %}
 <div class="container">
     <form method="post" class="post-form my-3">
         {% csrf_token %}
@@ -33,5 +27,4 @@
         <input type="button" value="뒤로" onClick="history.go(-1)">
     </form>
 </div>
-</body>
-</html>
+{% endblock %}
