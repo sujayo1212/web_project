@@ -1,12 +1,16 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
-
+from django.views.generic.base import TemplateView
+from typing import Any, Dict
 from .forms import UserForm, StaffForm
 # Create your views here.
+
+
+class HomeView(TemplateView):
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        return context
 
 
 def signup(request):
@@ -23,5 +27,3 @@ def signup(request):
     return render(request, './common/signup.html', {'form': form})
 
 
-def main(request):
-    return render(request, './common/main.html')
