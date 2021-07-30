@@ -1,30 +1,49 @@
 {% extends 'base.html' %}
 {% block main_area %}
-<div class="container">
-    <form method="post" class="post-form my-3">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="class_name">강의명</label>
-            <input type="text" class="form-control" name="class_name" id="class_name"
-                   value="{{ form.class_name.value|default_if_none:'' }}">
-        </div>
-        <div class="form-group">
-            <label for="subject">과목</label>
-            <input type="text" class="form-control" name="subject" id="subject"
-                   value="{{ form.subject.value|default_if_none:'' }}">
-        </div>
-        <div class="form-group">
-            <label for="detail_subject">세부과목</label>
-            <input type="text" class="form-control" name="detail_subject" id="detail_subject"
-                   value="{{ form.detail_subject.value|default_if_none:'' }}">
-        </div>
-        <div class="form-group">
-            <label for="content">내용</label>
-            <textarea class="form-control" name="content"
-                      id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
-        </div>
-        <input type="submit" class="btn btn-primary" value="수정하기">
-        <input type="button" value="뒤로" onClick="history.go(-1)">
-    </form>
-</div>
+<form method="post" class="post-form my-3" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- 오류표시 Start -->
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for field in form %}
+        {% if field.errors %}
+        <strong>{{ field.label }}</strong>
+        {{ field.errors }}
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <!-- 오류표시 End -->
+    <div class="form-group">
+        <label for="class_name">강의명</label>
+        <input type="text" class="form-control" name="class_name" id="class_name"
+               value="{{ form.class_name.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="subject">과목</label>
+        <input type="text" class="form-control" name="subject" id="subject"
+               value="{{ form.subject.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="detail_subject">세부과목</label>
+        <input type="text" class="form-control" name="detail_subject" id="detail_subject"
+               value="{{ form.detail_subject.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="content">내용</label>
+        <textarea class="form-control" name="content"
+                  id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="price">가격</label>
+        <input type="text" class="form-control" name="price" id="price"
+               value="{{ form.price.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="lecture_image">이미지</label>
+        <input type="file" name="lecture_image" id="lecture_image"
+               value="{{ form.lecture_image.value|default_if_none:'' }}">
+    </div>
+    <button type="submit" class="btn btn-primary">저장하기</button>
+</form>
 {% endblock %}
