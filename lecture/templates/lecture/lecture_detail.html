@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block main_area %}
 
-<h2>{{ lecture.class_name }}</h2>
-<h3>{{ lecture.subject }}</h3>
-<h3>{{ lecture.detail_subject }}</h3>
-<h3>{{ lecture.date }}</h3>
-<h3>{{ lecture.content }}</h3>
-<a href="#">수강 신청</a>
-<a href="/lecture/{{lecture.id}}/update">수정</a>
-<a href="/lecture/{{lecture.id}}/delete">삭제</a>
-<a href="{% url 'lecture:index' %}">뒤로</a>
-
+<div class="container">
+    <h2>{{ lecture.class_name }}</h2>
+    <h3>{{ lecture.subject }}</h3>
+    <h3>{{ lecture.detail_subject }}</h3>
+    <h3>{{ lecture.date }}</h3>
+    <h3>{{ lecture.content }}</h3>
+    <a href="#">수강 신청</a>
+    <a href="/lecture/{{lecture.id}}/update">수정</a>
+    <a href="/lecture/{{lecture.id}}/delete">삭제</a>
+    <a href="{% url 'lecture:index' %}">뒤로</a>
+</div>
 {% endblock %}
