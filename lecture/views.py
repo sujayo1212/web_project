@@ -14,7 +14,7 @@ class LectureDetail(DetailView):
 
 def lecture_create(request):
     if request.method == 'POST':
-        form = LectureForm(request.POST)
+        form = LectureForm(request.POST, request.FILES)
         if form.is_valid():
             lecture = form.save(commit=False)
             lecture.save()
@@ -28,7 +28,7 @@ def lecture_create(request):
 def lecture_update(request, lecture_id):
     lecture = get_object_or_404(Lecture, pk=lecture_id)
     if request.method == "POST":
-        form = LectureForm(request.POST, instance=lecture)
+        form = LectureForm(request.POST, request.FILES, instance=lecture)
         if form.is_valid():
             lecture = form.save(commit=False)
             lecture.save()

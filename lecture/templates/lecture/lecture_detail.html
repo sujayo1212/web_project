@@ -1,14 +1,29 @@
 {% extends 'base.html' %}
 {% block main_area %}
-
-<h2>{{ lecture.class_name }}</h2>
-<h3>{{ lecture.subject }}</h3>
-<h3>{{ lecture.detail_subject }}</h3>
-<h3>{{ lecture.date }}</h3>
-<h3>{{ lecture.content }}</h3>
-<a href="#">수강 신청</a>
-<a href="/lecture/{{lecture.id}}/update">수정</a>
-<a href="/lecture/{{lecture.id}}/delete">삭제</a>
-<a href="{% url 'lecture:index' %}">뒤로</a>
+<section class="py-5 text-center">
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <h6>{{ lecture.subject }} > {{ lecture.detail_subject }}</h6>
+                {% if lecture.lecture_image %}
+                <img src="{{ lecture.lecture_image.url }}" class="img-fluid rounded-start" alt="...">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h1>{{ lecture.class_name }}</h1>
+                    <h3>{{ lecture.date }}</h3>
+                    <h3>{{ lecture.content }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% if user.is_staff %}
+<a href="/lecture/{{lecture.id}}/delete" class="btn btn-primary float-right my-4">강의 삭제</a>
+<a href="/lecture/{{lecture.id}}/update" class="btn btn-primary float-right my-4">강의 수정</a>
+{% endif %}
+<a href="#" class="btn btn-primary float-right my-4">수강신청</a>
+<a href="{% url 'lecture:index' %}" class="btn btn-primary float-right my-4">뒤로</a>
 
 {% endblock %}
