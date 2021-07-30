@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block main_area %}
+
+<form action="{% url 'common:reset_pw' %}" method="post" >
+    {% csrf_token %}
+    <div>
+        아이디: <input type="text" name="username" id="username" value=""><br>
+        이메일: <input type="email" name="email" id="email" value=""><br>
+        성(last name): <input type="text" name="last_name" id="last_name" value=""><br>
+        이름(first_name): <input type="text" name="first_name" id="first_name" value="">
+    </div>
+    <div>
+        <input type="submit" value="찾기">
+    </div>
+</form>
+
+
+{% endblock %}

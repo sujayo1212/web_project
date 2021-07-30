@@ -24,7 +24,7 @@
                         <a class="nav-link" href="{% url 'my_page:my_page' %}"> My Page</a>
                     </li>
                     {% else %}
-                    <li class="nav-item" id="myForm">
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'common:login' %}" >Sign In</a>
                     </li>
                     <li class="nav-item">
@@ -36,13 +36,3 @@
         </div>
     </nav>
 </header>
-
-<script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-</script>
