@@ -32,11 +32,11 @@ def lecture_update(request, lecture_id):
         if form.is_valid():
             lecture = form.save(commit=False)
             lecture.save()
-            return redirect('lecture:detail', lecture_id=lecture_id)
+            return redirect('lecture:detail', pk=lecture_id)
     else:
         form = LectureForm(instance=lecture)
     context = {'form': form}
-    return render(request, 'lecture/lecture_create.html', context)
+    return render(request, 'lecture/lecture_update.html', context)
 
 
 def lecture_delete(request, lecture_id):

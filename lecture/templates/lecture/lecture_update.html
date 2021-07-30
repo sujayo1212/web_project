@@ -30,6 +30,7 @@
                       id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
         </div>
         <input type="submit" class="btn btn-primary" value="수정하기">
+        <input type="button" value="뒤로" onClick="history.go(-1)">
     </form>
 </div>
 </body>
