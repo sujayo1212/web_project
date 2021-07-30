@@ -17,11 +17,11 @@ def signup(request):
             form = UserForm(request.POST)#form에 UserForm post version으로 저장한다
         if form.is_valid(): # form이 valid하면
             form.save()
-            return redirect('/common/login')
+            return redirect('../login')
     else:
         form = UserForm() # 계정 생성 화면 리턴
-    return render(request, 'common/signup.html', {'form': form})
+    return render(request, './common/signup.html', {'form': form})
 
 
 def main(request):
-    return render(request, 'common/main.html')
+    return render(request, './common/main.html')
