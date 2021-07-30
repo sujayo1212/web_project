@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.contrib.auth.models import Group, Permission
-from django.shortcuts import redirect
+from django.contrib.auth.models import Group
 
 
 class UserForm(UserCreationForm):
@@ -65,8 +64,6 @@ class StaffForm(UserCreationForm):
         except Group.DoesNotExist:
             teacher = Group.objects.create(name='teacher')
             teacher.user_set.add(user)
-        finally:
-            permission = Permission.objects.create()
         return
 
 
