@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block main_area %}
+
+
+<section class="" id="next-section">
+    <div class="container">
+      <div class="row">
+
+            <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+                <div class = "">
+                    <div class="row"><h2>강좌명:  {{lecture.class_name}}</h2></div>
+                    <div class="row">과목: {{lecture.subject}}</div>
+                    <div class="row">세부과목: {{lecture.detail_subject}}</div>
+                    <div class="row">수강기간: {{lecture.date}}</div>
+                    <div class="row">내용: {{lecture.content}}</div>
+                </div>
+            </div>
+    </div>
+</section>
+
+{% endblock %}
+

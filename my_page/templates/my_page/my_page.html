@@ -7,7 +7,7 @@
       <div class="row">
         <figure class="col-2 mr-4 profile"></figure>
         <div class="col-6">
-            <h3 class="row">이름: {{user.first_name}}{{user.last_name}}</h3>
+            <h3 class="row">이름: {{user.last_name}}{{user.first_name}}</h3>
             <span class="row position">아이디: {{user.username}}</span><br>
             <span class="row position mt-4">Email: {{user.email}}</span><br>
         </div><br>
@@ -26,11 +26,20 @@
               <div class="row2">내용: {{lecture.content}}</div>
               <div class="row2">강사이름</div><br>
 
-              <div class="row2"><div class="col"><button type="button">수강신청</button></div><br>
-              <div class="row2"><a href="{% url 'home' %}" ><div class="col"><button type="button">메인페이지</button></a></div>
+              <div class="row2"><a href="{% url 'my_page:my_lecture' %}"></a><div class="col"><button type="button">상세보기</button></a></div><br>
+
+              <div class="row2"><a href="{% url 'home' %}"><div class="col"><button type="button">수강신청</button></a></div><br>
+              <div class="row2"><a href="{% url 'home' %}"></a><div class="col"><button type="button">메인페이지</button></a></div>
         </div>
 
     </section>
+
+        <section id="user_delete">
+            <form action= "{% url 'my_page:delete' %}" method="POST">
+                {% csrf_token %}
+            <input type="submit" value="회원탈퇴" class="btn btn-danger">
+            </form>
+        </section>
 
 </div>
 {% endblock %}
