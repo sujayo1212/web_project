@@ -11,7 +11,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('signup/', views.signup, name='signup'),
     path('find_id/', views.find_id, name='find_id'),
-    # path('reset_pw/', auth_views.PasswordResetView.as_view(), name='reset_pw'),
-    # path('reset_pw/done', auth_views.PasswordResetDoneView, name='reset_done')
+    path('find_pw/', views.find_pw, name='find_pw'),
+    path('find_pw/reset_pw', views.reset_pw, name='reset_pw')
 
 ]

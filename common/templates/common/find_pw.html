@@ -1,9 +1,40 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% block main_area %}
+<script>
+    function verify() {
+        verifyAnswer = document.getElementById("verifyAnswer").value;
+        answer = document.getElementById("answer").value;
+        if (verifyAnswer === answer) {
+            document.getElementById("verifyForm").submit();
+        } else {
+            alert("본인인증 질문에 대한 답이 틀렸습니다.");
+            }
+    }
 
-<form action="{% url 'common:reset_pw' %}" method="post" >
+</script>
+
+{% if username %}
+<form id="verifyForm" action="{% url 'common:reset_pw' %}" method="post">
     {% csrf_token %}
+    {% include "form_errors.html" %}
+    본인인증을 위한 질문에 답하여주세요<br>
+    {{question}}
+
+    <div id="hidden_inputs">
+        <input hidden id="answer" value="{{answer}}">
+        <input hidden id="username2" value="{{username}}">
+        <input hidden id="email2" value="{{email}}">
+        <input hidden id="first_name2" value="{{first_name}}">
+        <input hidden id="last_name2" value="{{last_name}}">
+    </div>
+    <input type="text" id="verifyAnswer" name="verifyAnswer">
+    <input type="button" id="answerSubmit" onclick="verify();" value="확인">
+</form>
+{% else %}
+<form action="{% url 'common:find_pw' %}" method="post" >
+    {% csrf_token %}
+    {% include "form_errors.html" %}
     <div>
         아이디: <input type="text" name="username" id="username" value=""><br>
         이메일: <input type="email" name="email" id="email" value=""><br>
@@ -14,6 +45,6 @@
         <input type="submit" value="찾기">
     </div>
 </form>
-
+{% endif %}
 
 {% endblock %}

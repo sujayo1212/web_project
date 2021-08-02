@@ -16,6 +16,12 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav">
+                    <li>
+                        <form id="search" name="search" action="{% url 'lecture:index' %}" method="get">
+                            <input type="search" id="searching" name="searching">
+                            <input type="submit" value="검색">
+                        </form>
+                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'common:logout' %}">Log Out</a>
