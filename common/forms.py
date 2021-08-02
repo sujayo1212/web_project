@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from .models import CustomUser
 from django.contrib.auth.models import Group
 
 
@@ -8,17 +8,20 @@ class UserForm(UserCreationForm):
     last_name = forms.CharField(label="성")
     first_name = forms.CharField(label="이름")
     email = forms.EmailField(label="이메일")
-    teacher_code = forms.CharField(label='강사코드')
+    self_prove = forms.CharField(label='본인인증 질문')
+    self_prove_answer = forms.CharField(label='본인인증 질문 정답')
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = (
             "username",
             "last_name",
             "first_name",
             "password1",
             "password2",
-            "email"
+            "email",
+            "self_prove",
+            "self_prove_answer"
         )
 
     def save(self):
@@ -42,16 +45,20 @@ class StaffForm(UserCreationForm):
     first_name = forms.CharField(label="이름")
     email = forms.EmailField(label="이메일")
     teacher_code = forms.CharField(label='강사코드')
+    self_prove = forms.CharField(label='본인인증 질문')
+    self_prove_answer = forms.CharField(label='본인인증 질문 정답')
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = (
             "username",
             "last_name",
             "first_name",
             "password1",
             "password2",
-            "email"
+            "email",
+            "self_prove",
+            "self_prove_answer"
         )
 
     def save(self):

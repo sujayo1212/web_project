@@ -7,18 +7,21 @@
         입력하신 정보에 맞는 계정은 없습니다. 다시 확인해주세요.<br>
         <a href="{% url 'common:find_id' %}">돌아가기</a>
     {% else %}
-        귀하의 계정은 {{username}}입니다.<br>
-
+        귀하의 계정은
+        <b>{{username}}</b>
+        입니다.<br>
+        <a href='{% url "common:find_pw" %}'>비밀번호 찾기</a>/
         <a href='/'>메인화면</a>
     {% endif %}
 
 {% else %}
 <form action="{% url 'common:find_id' %}" method="post" >
     {% csrf_token %}
+    {% include "form_errors.html" %}
     <div>
         이메일: <input type="email" name="email" id="email" value=""><br>
         성(last name): <input type="text" name="last_name" id="last_name" value=""><br>
-        이름(first_name): <input type="text" name="first_name" id="first_name" value="">
+        이름(first name): <input type="text" name="first_name" id="first_name" value="">
     </div>
     <div>
         <input type="submit" value="찾기">
@@ -28,4 +31,4 @@
 
 
 {% endblock %}
-<!--        <a href='{% url "common:find_pw" %}'>비밀번호를 찾으시겠습니까?</a><br>-->
+<!--        <br>-->
