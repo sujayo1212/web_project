@@ -6,6 +6,7 @@ from .forms import QuestionForm, AnswerForm
 
 # Create your views here.
 
+
 def index(request):
     """
     Q&A 목록 출력
@@ -13,6 +14,7 @@ def index(request):
     question_list = Question.objects.order_by('-create_date')
     context = {'question_list': question_list}
     return render(request, './qna/question_list.html', context)
+
 
 def detail(request, question_id):
     """
@@ -22,10 +24,12 @@ def detail(request, question_id):
     context = {'question': question}
     return render(request, './qna/question_detail.html', context)
 
+
 def answer_create(request, question_id):
     """
     Q&A 답변등록
     """
+    question = get_object_or_404(Question, pk=question_id)
     if request.method == "POST":
         form = AnswerForm(request.POST)
         if form.is_valid():
@@ -39,6 +43,7 @@ def answer_create(request, question_id):
     context = {'question': question, 'form': form}
     return render(request, 'qna/question_detail.html', context)
     # render, redirect 개념 정리 answer_create같은 경우 url이 아닌 int:question이라 다르게 연결 (urls.py참조)
+
 
 def question_create(request):
     """
