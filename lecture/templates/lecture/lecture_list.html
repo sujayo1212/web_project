@@ -1,28 +1,40 @@
 {% extends 'base.html' %}
 {% block main_area %}
-<div class="album py-5">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for l in lecture_list %}
-        <a href="{{ l.get_absolute_url }}">
-            <div class="col mb-5">
-                <div class="card shadow-sm">
-                    {% if l.lecture_image %}
-                    <img class="card-img-top" src="{{ l.lecture_image.url }}" alt="Card image cap" width="100px" height="250px">
-                    {% endif %}
-                    <div class="card-body">
-                        <p class="card-text"> {{ l.class_name }}</p>
-                        <div class="d-flex justify-content-between align-items-right">
-                            <small class="text-muted">{{ l.price }}원</small>
+<div class="row">
+    <!-- Sidebar-->
+    <div class="border-end col-md-3 col-lg-2" id="sidebar-wrapper">
+        <div class="list-group" id="categories-card">
+            <div class="sidebar-heading border-bottom bg-light">전체 강의</div>
+            <a href="/lecture/">전체</a>
+            {% for c in categories %}
+            <a href="{{ c.get_absolute_url }}">{{ c }}</a>
+            {% endfor %}
+            <a href="/lecture/category/no_category">미분류</a>
+        </div>
+    </div>
+    <div class="album py-5 col-md-9 col-lg-10" id="main_area">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for l in lecture_list %}
+            <a href="{{ l.get_absolute_url }}">
+                <div class="col mb-5">
+                    <div class="card shadow-sm">
+                        {% if l.lecture_image %}
+                        <img class="card-img-top" src="{{ l.lecture_image.url }}" alt="Card image cap" width="100px" height="250px">
+                        {% endif %}
+                        <div class="card-body">
+                            <p class="card-text"> {{ l.class_name }}</p>
+                            <div class="d-flex justify-content-between align-items-right">
+                                <small class="text-muted">{{ l.price }}원</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </a>
-        {% endfor %}
+            </a>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% if user.is_staff %}
 <a href="{% url 'lecture:lecture_create' %}" class="btn btn-primary float-right my-4">강의 등록</a>
 {% endif %}
-</main>
 {% endblock %}

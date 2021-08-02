@@ -23,11 +23,17 @@
      a {
      text-decoration:none !important
      }
+     #main_area{
+        padding-top:20px;
+     }
+     ul{
+       list-style:none;
+       }
     </style>
 </head>
 <body>
 {% include 'navbar.html' %}
-<main class="bg-light">
+<main id="main_area" class="bg-light">
     <div class="container bg-light my-5">
         {% block main_area %}
         {% endblock%}
