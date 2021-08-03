@@ -1,49 +1,71 @@
 {% extends 'base.html' %}
 {% block main_area %}
 <section class="py-5 text-center">
-    <div class="card" style="max-width: 540px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <h6>{{ lecture.subject }} > {{ lecture.detail_subject }}</h6>
-                {% if lecture.lecture_image %}
-                <img src="{{ lecture.lecture_image.url }}" class="img-fluid rounded-start" alt="...">
-                {% endif %}
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h1>{{ lecture.class_name }}</h1>
-                    <h3>{{ lecture.date }}</h3>
-                    <h3>{{ lecture.content }}</h3>
-                </div>
+    <div class="row g-0">
+        <div class="col-md-4">
+            <h6>{{ lecture.subject }} > {{ lecture.detail_subject }}</h6>
+            <h1>{{ lecture.class_name }}</h1>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
             </div>
         </div>
     </div>
 </section>
-{% if user.is_staff %}
-<a href="#" class="btn btn-primary float-right my-4" data-toggle="modal" data-target="#exampleModal">강의 삭제</a>
-<a href="/lecture/{{lecture.id}}/update" class="btn btn-primary float-right my-4">강의 수정</a>
-{% endif %}
-<a href="#" class="btn btn-primary float-right my-4">수강신청</a>
-<a href="{% url 'lecture:index' %}" class="btn btn-primary float-right my-4">뒤로</a>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">게시물 삭제</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        게시물을 정말 삭제하시겠습니까?
-      </div>
-      <div class="modal-footer">
-      	<a role="button" class="btn btn-primary" href="/lecture/{{lecture.id}}/delete">삭제하기</a>
-       	<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-      </div>
+<div class="bg-white">
+    {% if lecture.lecture_image %}
+    <img src="{{ lecture.lecture_image.url }}" class="img-fluid rounded-start" alt="...">
+    {% endif %}
+    <h3>{{ lecture.content }}</h3>
+</div>
+<div>
+    {% if user.is_staff %}
+    <a href="#" class="btn btn-primary float-right my-4" data-toggle="modal" data-target="#exampleModal">강의 삭제</a>
+    <a href="/lecture/{{lecture.id}}/update" class="btn btn-primary float-right my-4">강의 수정</a>
+    {% endif %}
+    <a href="#" class="btn btn-primary float-right my-4" data-toggle="modal" data-target="#exampleModal2">수강신청</a>
+    <a href="{% url 'lecture:index' %}" class="btn btn-primary float-right my-4">뒤로</a>
+</div>
+<!-- 수강신청 Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">수강 신청</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                수강 신청 하시겠습니까?
+            </div>
+            <div class="modal-footer">
+                <a role="button" class="btn btn-primary" href="/my_page">신청하기</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
+
+<!-- 삭제 Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">게시물 삭제</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                게시물을 정말 삭제하시겠습니까?
+            </div>
+            <div class="modal-footer">
+                <a role="button" class="btn btn-primary" href="/lecture/{{lecture.id}}/delete">삭제하기</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

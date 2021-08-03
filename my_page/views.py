@@ -9,6 +9,8 @@ from django.http import HttpResponseForbidden
 from common.models import CustomUser as User
 from lecture.models import Lecture
 from .forms import CustomUserChangeForm, PasswordCheckForm
+from .forms import CustomUserChangeForm
+
 
 # # Create your views here.
 

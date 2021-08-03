@@ -12,6 +12,8 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('find_id/', views.find_id, name='find_id'),
     path('find_pw/', views.find_pw, name='find_pw'),
-    path('find_pw/reset_pw', views.reset_pw, name='reset_pw')
+    path('find_pw/reset_pw/<int:pk>', views.reset_pw, name='reset_pw'),
+    path('find_pw/verify/<int:pk>', views.verify, name='verify'),
+    # path('find_pw/reset_done',views.reset_done, name='reset_done')
 
 ]

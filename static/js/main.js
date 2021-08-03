@@ -60,7 +60,7 @@
 
 					// Create BG.
 						$bg = document.createElement('div');
-							$bg.style.backgroundImage = 'url("' + k + '")';
+							$bg.style.backgroundImage = 'url("static/' + k + ' ")';
 							$bg.style.backgroundPosition = settings.images[k];
 							$wrapper.appendChild($bg);
 
