@@ -38,13 +38,16 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/register_main.css' %}">
 
     <!--===============================================================================================-->
+    <script>
+    </script>
+
 </head>
 <body>
 
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form method="post" class="login100-form validate-form" action="{% url 'common:signup' %}">
+            <form id="registerForm" method="post" class="login100-form validate-form" action="{% url 'common:signup' %}">
                 {% csrf_token %}
                 {% include "form_errors.html" %}
                 <span class="login100-form-title p-b-34 p-t-27">
@@ -100,21 +103,23 @@
                             </select>
                             <br>
                             <input type="text" name="self_prove_answer" id="self_prove_answer">
+                        </div>
                         <div class="form-group">
                             <label for="teacher_code">Instructor Code</label>
                             <input type="text" name="teacher_code" id="teacher_code" value="Instructor Only">
                         </div>
                         <br/>
                         <div class="container-login100-form-btn">
-                            <button class="login100-form-btn">
+                            <button id="register" class="login100-form-btn" onclick="registerSuccess();">
                                 Sign Up
                             </button>
-                            <br><pr><div class="container-login100-form-btn">
-                            <button class="login100-form-btn">
-                                Login
+                            <br><pr><div class="container-form-btn">
+                            <button type="button" id="goBack" class="login100-form-btn" onclick="location.href='{% url 'common:login' %}'">
+                                Go Back
                             </button></div></pr></br>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>
