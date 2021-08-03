@@ -7,6 +7,9 @@ from django.core.exceptions import PermissionDenied
 
 class LectureList(ListView):
     model = Lecture
+    paginate_by = 6
+    paginate_orphans = 0
+    ordering = '-pk'
 
     def get_context_data(self, **kwargs):
         context = super(LectureList, self).get_context_data()

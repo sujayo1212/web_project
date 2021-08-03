@@ -26,7 +26,7 @@
       body {
         position: relative;
         background-color: rgb(223, 231, 255);
-        cursor: none; 
+        cursor: grab;
       }
     </style>
     <script>
@@ -77,7 +77,6 @@
     <div class="vod"><video autoplay="" playsinline="" loop="" muted="" src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/videos/3-27c8c3ea.webm"></video></div>
     <img src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/images/4-105dd65b.png">
     <img src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/images/5-ac49bfdc.png">
-
     <html>
     <head>
         <title>Learning Management System by HTML5 UP</title>
@@ -96,6 +95,7 @@
 
     <!-- Signup Form -->
     <form id="signup-form" method="post" action="#">
+        {% csrf_token %}
         {% if user.is_authenticated %}
         <input type="submit" value="LogOut" onClick="location.href='/common/logout/'"/>
         <input type="submit" value="My Page" onClick="location.href='/my_page/'"/>
@@ -106,8 +106,14 @@
         <input type="submit" value="Lecture" onClick="location.href='/lecture/'">
         <input type="submit" value="Board" onClick="location.href='/qna/'">
     </form>
-    </script>
     </ul>
+    <style>
+    ul {
+        list-style: none;
+         padding-left: 0px;
+    }
+    </style>
+
     <ul class="copyright">
         <li>&copy; Uneducated System.</li>
     </ul>
