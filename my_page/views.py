@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from django.views.generic import TemplateView, ListView, View
 from django.http import HttpResponseForbidden
-from django.contrib.auth.models import User
+from common.models import CustomUser as User
 from .forms import CustomUserChangeForm
 
 # # Create your views here.
