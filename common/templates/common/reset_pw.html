@@ -1,13 +1,41 @@
 {% extends 'base.html' %}
 {% block main_area %}
-<form id="new_password" action="{% url 'common:reset_pw' %} method='post'">
+
+{% if error_message %}
+    {{error_message}}
+
+{% else %}
+<script>
+    function pwValid() {
+        password1 = document.getElementById("password1").value
+        password2 = document.getElementById("password2").value
+        form = document.getElementById("newPasswordForm")
+        if (password1 === password2) {
+            if (password1.length < 8) {
+                alert('비밀번호가 8자리 미만입니다');
+            } else {
+                alert("변경 완료")
+                return form.submit();
+            }
+        } else {
+            alert("두 번호가 일치하지 않습니다.")
+          }
+    }
+</script>
+
+<form name="newPasswordForm" id="newPasswordForm" action="{% url 'common:reset_pw' pk %}" method='post'>
+    {% csrf_token %}
+    {% include "form_errors.html" %}
+    <p>Username: {{username}}</p>
+    <p>email: {{email}}</p>
     <div id="password_input">
-        변경하실 비밀번호: <input type="password" name="password1" id="password1">
-        <br>
-        비밀번호 재확인: <input type="password" name="password2" id="password2">
-    </div>
-    <div id="submit_button">
-        <input type="submit" value="수정">
+        <p>변경하실 비밀번호: <input type="password" name="password1" id="password1"></p>
+        <p>비밀번호 재확인: <input type="password" name="password2" id="password2"></p>
     </div>
 </form>
+<div id="submit_button">
+    <button type="button" onclick="pwValid();">수정</button>
+</div>
+
+{% endif %}
 {% endblock %}
