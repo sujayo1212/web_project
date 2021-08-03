@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
@@ -6,7 +7,10 @@ from django.views.decorators.http import require_POST
 from django.views.generic import TemplateView, ListView, View
 from django.http import HttpResponseForbidden
 from common.models import CustomUser as User
+from lecture.models import Lecture
+from .forms import CustomUserChangeForm, PasswordCheckForm
 from .forms import CustomUserChangeForm
+
 
 # # Create your views here.
 
@@ -37,7 +41,7 @@ def update(request):
             return redirect('home')
     else:
         form = CustomUserChangeForm(instance=request.user)
-        context={'form': form}
+        context= {'form': form}
     return render(request, 'my_page/update.html', context)
 
         # user_change_form = CustomUserChangeForm(request.POST, instance=request.user)
@@ -51,13 +55,23 @@ def update(request):
 
 def my_lecture(request):
     user = request.user
+    # lectures = Lecture.object.filter(members=user)
 
     return render(request, 'my_page/my_lecture.html')
 
 
-@require_POST
-def delete(request):
-    if request.user.is_authenticated:
-        request.user.delete()
 
-    return redirect('home')
+def delete(request):
+    form = PasswordCheckForm(request.user)
+    if request.method == 'POST':
+        form = PasswordCheckForm(request.user, request.POST)
+        if form.is_valid():
+            request.user.delete()
+            logout(request)
+            messages.success(request, "회원탈퇴가 완료되었습니다.")
+            return redirect('home')
+    else:
+        messages.error("비밀번호가 틀립니다.")
+        form = PasswordCheckForm(request.user)
+
+    return render(request, 'my_page/delete.html', {'form': form})
