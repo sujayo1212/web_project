@@ -34,8 +34,7 @@
                 {% csrf_token %}
 				{% include "form_errors.html" %}
                 결과내 재검색<br>
-                {{lecture_list}}
-                <input type="hidden" id="lecture_list" name="lecture_list" value="{{lecture_list}}">
+                <input type="hidden" id="term_list" name="term_list" value="{{term_list}}">
                 <input type="text" id="sub_term" name="sub_term">
                 <button type="submit">검색</button>
             </form>
