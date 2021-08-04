@@ -1,4 +1,5 @@
 from django.db import models
+from common.models import CustomUser as User
 
 
 class Category(models.Model):
@@ -25,6 +26,9 @@ class Lecture(models.Model):
     lecture_image = models.ImageField(upload_to='lecture/images/%Y/%m/%d/', blank=True, null=True)
 
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+
+    member = models.ManyToManyField(User, related_name='member')
+    max_member = models.IntegerField(default=10)
 
     def __str__(self):
         return self.class_name
