@@ -1,20 +1,19 @@
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from django.views.generic import TemplateView, ListView, View
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from common.models import CustomUser as User
 from lecture.models import Lecture
 from .forms import CustomUserChangeForm, PasswordCheckForm
-from .forms import CustomUserChangeForm
+
 
 
 # # Create your views here.
 
-
+#마이페이지
 def my_page(request):
     if request.user.is_authenticated:
         user = request.user
@@ -32,6 +31,7 @@ def my_page(request):
         return redirect('/common/login')
 
 
+#정보수정페이지
 @login_required
 def update(request):
     if request.method == 'POST':
@@ -44,25 +44,33 @@ def update(request):
         context= {'form': form}
     return render(request, 'my_page/update.html', context)
 
-        # user_change_form = CustomUserChangeForm(request.POST, instance=request.user)
-        # if user_change_form.is_valid():
-        #     user_change_form.save()
-        #     return render(request, 'home.html')
-    #
-    # else:
-    #     user_change_form = CustomUserChangeForm(instance=request.user)
-    #     return render(request, 'my_page/update.html', {'user_change_form': user_change_form})
 
+#나의수강정보
 def my_lecture(request):
     user = request.user
-    # lectures = Lecture.object.filter(members=user)
+    lectures = Lecture.objects.filter(member=user)
+    return render(request, 'my_page/my_lecture.html', {'lectures': lectures})
 
-    return render(request, 'my_page/my_lecture.html')
+#수강신청
+def join_lecture(request, ):
+    user = request.user
+    lecture = Lecture.objects.get
+
+    if lecture.member.count() >= lecture.max_member:
+        return render(request, 'my_page/max.html')
+    else:
+        lecture.member.add(user)
+    return render(request, 'my_page/join_lecture.html')
+
+#
+# #수강취소
+# def cancel_study(request, ):
+#     user = request.user
+#     lecture = Lecture.objects.get
 
 
-
+#회원탈퇴
 def delete(request):
-    form = PasswordCheckForm(request.user)
     if request.method == 'POST':
         form = PasswordCheckForm(request.user, request.POST)
         if form.is_valid():
@@ -75,3 +83,4 @@ def delete(request):
         form = PasswordCheckForm(request.user)
 
     return render(request, 'my_page/delete.html', {'form': form})
+
