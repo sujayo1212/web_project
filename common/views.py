@@ -7,7 +7,10 @@ from .models import CustomUser as User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse_lazy
 from lecture.models import Lecture
-import json
+from functools import reduce
+from operator import and_
+import ast
+
 
 # Create your views here.
 
@@ -111,12 +114,23 @@ def reset_pw(request, pk):
 
 def searched_lecture(request):
     if request.method == 'POST':
+        term_list = request.POST['term_list']
+        sub_term = request.POST['sub_term']
+        term_list = ast.literal_eval(term_list)
+        term_list.append(sub_term)
+        lecture_list = reduce(and_, (Lecture.objects.filter(class_name__icontains=term)
+                                     | Lecture.objects.filter(subject__icontains=term)
+                                     | Lecture.objects.filter(detail_subject__icontains=term)
+                                     | Lecture.objects.filter(content__icontains=term) for term in term_list))
 
+        context = {'lecture_list': lecture_list, 'term_list': term_list}
         return render(request, './common/searched_lecture.html', context)
     else:
-        term = request.GET['searching']
-        lecture_list = (Lecture.objects.filter(class_name__icontains=term) | Lecture.objects.filter(subject__icontains=term)
-                        | Lecture.objects.filter(detail_subject__icontains=term)
-                        | Lecture.objects.filter(content__icontains=term))
-        context = {'lecture_list': lecture_list}
+        term_list = [request.GET['searching']]
+        print(term_list, type(term_list))
+        lecture_list = reduce(and_, (Lecture.objects.filter(class_name__icontains=term)
+                                     | Lecture.objects.filter(subject__icontains=term)
+                                     | Lecture.objects.filter(detail_subject__icontains=term)
+                                     | Lecture.objects.filter(content__icontains=term) for term in term_list))
+        context = {'lecture_list': lecture_list, 'term_list': term_list}
         return render(request, './common/searched_lecture.html', context)
