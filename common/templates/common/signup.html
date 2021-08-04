@@ -50,6 +50,9 @@
             <form id="registerForm" method="post" class="login100-form validate-form" action="{% url 'common:signup' %}">
                 {% csrf_token %}
                 {% include "form_errors.html" %}
+                <span class="login100-form-logo">
+						<i class="zmdi zmdi-landscape" onclick="location.href='/'"></i>
+					</span>
                 <span class="login100-form-title p-b-34 p-t-27">
 						Create Account
 					</span>
@@ -94,28 +97,27 @@
                                    value="{{ form.email.value|default_if_none:'' }}">
                         </div>
                         <div class="form-group">
-                            <label for="self_prove">본인확인 질문</label><br>
-                            <select name="self_prove" id="self_prove" >
-                                <option>--아래에서 선택해주세요--</option>
-                                <option>어릴적 별명은?</option>
-                                <option>취미는?</option>
-                                <option>가장 좋아하는 노래는?</option>
+                            <label for="self_prove">Verify Question</label>
+                            <select name="self_prove" class="form-control" id="self_prove" >
+                                <option value="">-----------------select-----------------</option>
+                                <option>What is your mother's name?</option>
+                                <option>What is your hobby?</option>
+                                <option>What is your favorite song?</option>
                             </select>
-                            <br>
-                            <input type="text" name="self_prove_answer" id="self_prove_answer">
+                            <label for="self_prove_answer">Answer</label>
+                            <input type="text" name="self_prove_answer" class="form-control" id="self_prove_answer">
                         </div>
                         <div class="form-group">
                             <label for="teacher_code">Instructor Code</label>
-                            <input type="text" name="teacher_code" id="teacher_code" value="Instructor Only">
+                            <input type="text" name="teacher_code" class="form-control" id="teacher_code" value="Instructor Only">
                         </div>
-                        <br/>
                         <div class="container-login100-form-btn">
-                            <button id="register" class="login100-form-btn" onclick="registerSuccess();">
+                            <button id="register" class="login100-form-btn"  onclick="registerSuccess();">
                                 Sign Up
                             </button>
-                            <br><pr><div class="container-form-btn">
+                            &nbsp;&nbsp;&nbsp;
                             <button type="button" id="goBack" class="login100-form-btn" onclick="location.href='{% url 'common:login' %}'">
-                                Go Back
+                                Cancel
                             </button></div></pr></br>
                         </div>
                     </div>
@@ -162,7 +164,6 @@
 <!--    </div>-->
 <!--    <form method="post" class="post-form" action="{% url 'common:signup' %}">-->
 <!--        {% csrf_token %}-->
-<!--        {% include "form_errors.html" %}-->
 <!--        <div class="form-group">-->
 <!--            <label for="username">아이디</label>-->
 <!--            <input type="text" class="form-control" name="username" id="username"-->
