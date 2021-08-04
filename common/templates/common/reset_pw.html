@@ -1,41 +1,140 @@
-{% extends 'base.html' %}
-{% block main_area %}
+<!DOCTYPE html>
+{% load static %}
 
-{% if error_message %}
-    {{error_message}}
+<html lang="en">
+<head>
+    <title>Login V3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'images/icons/favicon.ico' %}">
 
-{% else %}
-<script>
-    function pwValid() {
-        password1 = document.getElementById("password1").value
-        password2 = document.getElementById("password2").value
-        form = document.getElementById("newPasswordForm")
-        if (password1 === password2) {
-            if (password1.length < 8) {
-                alert('비밀번호가 8자리 미만입니다');
-            } else {
-                alert("변경 완료")
-                return form.submit();
-            }
-        } else {
-            alert("두 번호가 일치하지 않습니다.")
-          }
-    }
-</script>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
 
-<form name="newPasswordForm" id="newPasswordForm" action="{% url 'common:reset_pw' pk %}" method='post'>
-    {% csrf_token %}
-    {% include "form_errors.html" %}
-    <p>Username: {{username}}</p>
-    <p>email: {{email}}</p>
-    <div id="password_input">
-        <p>변경하실 비밀번호: <input type="password" name="password1" id="password1"></p>
-        <p>비밀번호 재확인: <input type="password" name="password2" id="password2"></p>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_main.css' %}">
+
+    <!--===============================================================================================-->
+</head>
+<body>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+
+            {% if error_message %}
+            {{error_message}}
+
+            {% else %}
+            <script>
+                function pwValid() {
+                    password1 = document.getElementById("password1").value
+                    password2 = document.getElementById("password2").value
+                    form = document.getElementById("newPasswordForm")
+                    if (password1 === password2) {
+                        if (password1.length < 8) {
+                            alert('비밀번호가 8자리 미만입니다');
+                        } else {
+                            alert("변경 완료")
+                            return form.submit();
+                        }
+                    } else {
+                        alert("두 번호가 일치하지 않습니다.")
+                      }
+                }
+            </script>
+
+            <form name="newPasswordForm" id="newPasswordForm" action="{% url 'common:reset_pw' pk %}" method='post'>
+                {% csrf_token %}
+                {% include "form_errors.html" %}
+                <span class="login100-form-logo">
+						<i class="zmdi zmdi-landscape" onclick="location.href='/'"></i>
+					</span>
+
+                <span class="login100-form-title p-b-34 p-t-27">
+						Find PW
+					</span>
+
+                <div class="wrap-input100 validate-input" data-validate = "Username">
+                    <p class="input100">Username: {{ username }}</p>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "Enter Email">
+                    <p class="input100">email: {{ email }}</p>
+                </div>
+
+                <div id="password_input">
+                    <div class="wrap-input100 validate-input" data-validate = "Enter Change Password">
+                        <input class="input100" type="password" name="password1" placeholder="Change Password" id="password1"
+                               value="{{ form.password1.value|default_if_none:'' }}">
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate = "Enter Change Password">
+                        <input class="input100" type="password" name="password2" placeholder="Check Change Password" id="password2"
+                               value="{{ form.password2.value|default_if_none:'' }}">
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+
+                </div>
+                <div class="container-login100-form-btn">
+                    <button type="submit" onclick="pwValid()"; class="login100-form-btn mr-3">
+                    Change
+                    </button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
     </div>
-</form>
-<div id="submit_button">
-    <button type="button" onclick="pwValid();">수정</button>
 </div>
 
-{% endif %}
-{% endblock %}
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'js/login_main.js' %}"></script>
+
+</body>
+</html>

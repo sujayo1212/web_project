@@ -30,6 +30,9 @@ class Lecture(models.Model):
     max_member = models.IntegerField(default=10)
 
 
+    member = models.ManyToManyField(User, related_name='member')
+    max_member = models.IntegerField(default=10)
+
     def __str__(self):
         return self.class_name
 

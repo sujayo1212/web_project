@@ -1,35 +1,122 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
-{% block main_area %}
-<script>
-    function verify() {
-        verifyAnswer = document.getElementById("verifyAnswer").value;
-        answer = document.getElementById("answer").value;
-        if (verifyAnswer === answer) {
-            document.getElementById("verifyForm").submit();
-        } else {
-            alert("본인인증 질문에 대한 답이 틀렸습니다.");
+{% load static %}
+
+<html lang="en">
+<head>
+    <title>Login V3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'images/icons/favicon.ico' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_main.css' %}">
+
+    <!--===============================================================================================-->
+</head>
+<body>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+
+            <script>
+            function verify() {
+                verifyAnswer = document.getElementById("verifyAnswer").value;
+                answer = document.getElementById("answer").value;
+                if (verifyAnswer === answer) {
+                    document.getElementById("verifyForm").submit();
+                } else {
+                    alert("본인인증 질문에 대한 답이 틀렸습니다.");
+                    }
             }
-    }
+        </script>
+            {% if pk %}
+            <form name="verifyForm" id="verifyForm" action="{% url 'common:verify' pk %}" method='post'>
+                {% csrf_token %}
+                {% include "form_errors.html" %}
+                <span class="login100-form-logo">
+						<i class="zmdi zmdi-landscape" onclick="location.href='/'"></i>
+					</span>
 
-</script>
+                <span class="login100-form-title p-b-34 p-t-27">
+                    본인인증을 위한 질문에 답하여주세요<br/>
+                    {{question}}
+                </span>
 
-{% if pk %}
-<form id="verifyForm" action="{% url 'common:verify' pk %}" method="post">
-    {% csrf_token %}
-    {% include "form_errors.html" %}
-    본인인증을 위한 질문에 답하여주세요<br>
-    {{question}}
-    <div>
-        <input type="hidden" id="answer" name="answer" value="{{answer}}">
-        <input type="text" id="verifyAnswer" name="verifyAnswer">
-        <button type="button" id="answerSubmit" onclick="verify();">확인</button>
+                <div class="wrap-input100 validate-input" data-validate = "Enter Answer">
+                    <input class="input100" type="hidden" name="answer" placeholder="Answer" id="answer"
+                           value="{{answer}}">
+                    <input class="input100" type="text" name="verifyAnswer" placeholder="Verify Answer" id="verifyAnswer"?
+
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button type="submit" onclick="verify();" class="login100-form-btn mr-3">
+                        확인
+                    </button>
+                </div>
+            </form>
+            {% else %}
+            <div id="error_message">
+                {{error_message}}
+            </div>
+            {% endif %}
+        </div>
     </div>
-</form>
-{% else %}
-<div id="error_message">
-    {{error_message}}
 </div>
-{% endif %}
 
-{% endblock %}
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'js/login_main.js' %}"></script>
+
+</body>
+</html>
+

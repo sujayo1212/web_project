@@ -1,11 +1,17 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
 from typing import Any, Dict
 from .forms import UserForm, StaffForm
 from .models import CustomUser as User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse_lazy
+from lecture.models import Lecture
+from functools import reduce
+from operator import and_
+import ast
+
+
 # Create your views here.
 
 
@@ -106,17 +112,25 @@ def reset_pw(request, pk):
         return render(request, './common/reset_pw.html', context)
 
 
-# def reset_done(request):
-#     if request == 'POST':
-#         #  이미 본인확인하면서 user 있는 것을 확인 했으므로 다시 검증 필요 x
-#         user = User.objects.get(
-#             username=request.POST.get('username', ''),
-#             email=request.POST.get('email', '')
-#         )
-#         password1 = request.POST['password1']
-#         password2 = request.POST['password2']
-#
-#         if password1 == password2:
-#             user.set_password(password1)
-#             user.save()
-#             return redirect('{% url "common:login" %}')
+def searched_lecture(request):
+    if request.method == 'POST':
+        term_list = request.POST['term_list']
+        sub_term = request.POST['sub_term']
+        term_list = ast.literal_eval(term_list)
+        term_list.append(sub_term)
+        lecture_list = reduce(and_, (Lecture.objects.filter(class_name__icontains=term)
+                                     | Lecture.objects.filter(subject__icontains=term)
+                                     | Lecture.objects.filter(detail_subject__icontains=term)
+                                     | Lecture.objects.filter(content__icontains=term) for term in term_list))
+
+        context = {'lecture_list': lecture_list, 'term_list': term_list}
+        return render(request, './common/searched_lecture.html', context)
+    else:
+        term_list = [request.GET['searching']]
+        print(term_list, type(term_list))
+        lecture_list = reduce(and_, (Lecture.objects.filter(class_name__icontains=term)
+                                     | Lecture.objects.filter(subject__icontains=term)
+                                     | Lecture.objects.filter(detail_subject__icontains=term)
+                                     | Lecture.objects.filter(content__icontains=term) for term in term_list))
+        context = {'lecture_list': lecture_list, 'term_list': term_list}
+        return render(request, './common/searched_lecture.html', context)

@@ -1,34 +1,129 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
-{% block main_area %}
+{% load static %}
 
-{% if username %}
-    {% if username == "None" %}
-        입력하신 정보에 맞는 계정은 없습니다. 다시 확인해주세요.<br>
-        <a href="{% url 'common:find_id' %}">돌아가기</a>
-    {% else %}
-        귀하의 계정은
-        <b>{{username}}</b>
-        입니다.<br>
-        <a href='{% url "common:find_pw" %}'>비밀번호 찾기</a>/
-        <a href='/'>메인화면</a>
-    {% endif %}
+<html lang="en">
+<head>
+    <title>Login V3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'images/icons/favicon.ico' %}">
 
-{% else %}
-<form action="{% url 'common:find_id' %}" method="post" >
-    {% csrf_token %}
-    {% include "form_errors.html" %}
-    <div>
-        이메일: <input type="email" name="email" id="email" value=""><br>
-        성(last name): <input type="text" name="last_name" id="last_name" value=""><br>
-        이름(first name): <input type="text" name="first_name" id="first_name" value="">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_main.css' %}">
+
+    <!--===============================================================================================-->
+</head>
+<body>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            {% if username %}
+            {% if username == "None" %}
+            입력하신 정보에 맞는 계정은 없습니다. 다시 확인해주세요.<br>
+            <div class="container-login100-form-btn">
+                <a class="login100-form-btn mr-3" href="{% url 'common:find_id' %}">돌아가기</a>
+            </div>
+            {% else %}
+            귀하의 계정은
+            <b>{{username}}</b>
+            입니다.<br>
+            <div class="container-login100-form-btn">
+                <a class="login100-form-btn mr-3" href="{% url 'common:find_pw' %}">비밀번호 찾기</a>
+                <a class="login100-form-btn mr-3" href="/">메인화면</a>
+            </div>
+            {% endif %}
+            {% else %}
+            <form class="login100-form validate-form" method="post" action="{% url 'common:find_id' %}">
+                {% csrf_token %}
+                {% include "form_errors.html" %}
+                <span class="login100-form-logo">
+						<i class="zmdi zmdi-landscape" onclick="location.href='/'"></i>
+					</span>
+
+                <span class="login100-form-title p-b-34 p-t-27">
+						Find ID
+					</span>
+                <div class="wrap-input100 validate-input" data-validate = "Enter Email">
+                    <input class="input100" type="email" name="email" placeholder="Email" id="email"
+                           value="{{ form.email.value|default_if_none:'' }}">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "Enter Last Name">
+                    <input class="input100" type="text" name="last_name" placeholder="Last Name" id="last_name"
+                           value="{{ form.last_name.value|default_if_none:'' }}">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "Enter First Name">
+                    <input class="input100" type="text" name="first_name" placeholder="First Name" id="first_name"
+                           value="{{ form.first_name.value|default_if_none:'' }}">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn mr-3">
+                        Find
+                    </button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
     </div>
-    <div>
-        <input type="submit" value="찾기">
-    </div>
-</form>
-{% endif %}
+</div>
 
 
-{% endblock %}
-<!--        <br>-->
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'js/login_main.js' %}"></script>
+
+</body>
+</html>
+
+
