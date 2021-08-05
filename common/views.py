@@ -6,7 +6,7 @@ from .forms import UserForm, StaffForm
 from .models import CustomUser as User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse_lazy
-from lecture.models import Lecture
+from lecture.models import Lecture, Category
 from functools import reduce
 from operator import and_
 import ast
@@ -114,23 +114,30 @@ def reset_pw(request, pk):
 
 def searched_lecture(request):
     if request.method == 'POST':
+        category = request.POST['category']
+        categories = Category.objects.all()
         term_list = request.POST['term_list']
         sub_term = request.POST['sub_term']
-        term_list = ast.literal_eval(term_list)
+        if len(term_list) < 1:
+            term_list = []
+        else:
+            term_list = ast.literal_eval(term_list)
         term_list.append(sub_term)
         lecture_list = reduce(and_, (Lecture.objects.filter(class_name__icontains=term)
                                      | Lecture.objects.filter(subject__icontains=term)
                                      | Lecture.objects.filter(detail_subject__icontains=term)
                                      | Lecture.objects.filter(content__icontains=term) for term in term_list))
 
-        context = {'lecture_list': lecture_list, 'term_list': term_list}
+        lecture_list_category = Lecture.objects.get(class_name=category)
+        context = {'lecture_list': lecture_list, 'term_list': term_list, 'categories': categories}
         return render(request, './common/searched_lecture.html', context)
     else:
+        categories = Category.objects.all()
         term_list = [request.GET['searching']]
         print(term_list, type(term_list))
         lecture_list = reduce(and_, (Lecture.objects.filter(class_name__icontains=term)
                                      | Lecture.objects.filter(subject__icontains=term)
                                      | Lecture.objects.filter(detail_subject__icontains=term)
                                      | Lecture.objects.filter(content__icontains=term) for term in term_list))
-        context = {'lecture_list': lecture_list, 'term_list': term_list}
+        context = {'lecture_list': lecture_list, 'term_list': term_list, 'categories': categories}
         return render(request, './common/searched_lecture.html', context)
