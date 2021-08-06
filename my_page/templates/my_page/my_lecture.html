@@ -5,18 +5,25 @@
 <section class="" id="my_lecture">
     <div class="container">
       <div class="row">
-
-            <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+        {% for lecture in lectures %}
+            <div class="">
                 <div class = "">
-                    <div class="row"><h2>강좌명:  {{lecture.class_name}}</h2></div>
+                    <div class="row"><a href="{{ lecture.get_absolute_url }}"> <h2>강좌명:  {{lecture.class_name}}</h2></a></div>
                     <div class="row">과목: {{lecture.subject}}</div>
                     <div class="row">세부과목: {{lecture.detail_subject}}</div>
                     <div class="row">수강기간: {{lecture.date}}</div>
                     <div class="row">내용: {{lecture.content}}</div>
                 </div>
             </div>
-    </div>
+
+            <div class="row">
+              <div class="col"><a href="{% url 'my_page:cancel_lecture' lecture.id %}"><button type="button" class="btn btn-success">수강취소</button></a></div>
+        {% endfor %}
+      </div>
+
 </section>
+                <div class="row2"><a href="{% url 'lecture:index' %}"><div class="col"><button type="button">강의목록보러가기</button></a></div>
+
 
 {% endblock %}
 

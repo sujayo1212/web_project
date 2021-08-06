@@ -8,5 +8,8 @@ urlpatterns = [
     path('update/', views.update, name='update'),
     path('my_lecture/', views.my_lecture, name='my_lecture'),
     path('delete/', views.delete, name='delete'),
-    path('join_lecture/', views.join_lecture, name='join_lecture'),
+    path('join_lecture/<int:id>', views.join_lecture, name='join_lecture'),
+    path('cancel_lecture/<int:id>', views.cancel_lecture, name='cancel_lecture'),
+    path('lecture_concern/<int:id>', views.lecture_concern, name='lecture_concern'),
+    path('concerned_lecture/', views.concerned_lecture, name='concerned_lecture'),
 ]

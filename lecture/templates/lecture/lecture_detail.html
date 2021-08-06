@@ -25,6 +25,19 @@
     <a href="/lecture/{{lecture.id}}/update" class="btn btn-primary float-right my-4">강의 수정</a>
     {% endif %}
     <a href="#" class="btn btn-primary float-right my-4" data-toggle="modal" data-target="#exampleModal2">수강신청</a>
+
+    <form action = "{% url 'my_page:lecture_concern' lecture.id %}" method="post">
+        {% csrf_token %}
+        {% if user in lecture.lecture_concern.all %}
+            <button type="submit">관심해제</button>
+                <i class="fas fa-heart fa-lg" style="color:#ed4956;"></i>
+            {% else %}
+            <button type="submit">관심등록</button>
+                <i class="far fa-heart fa-lg" style="color:#ed4956;"></i>
+        {% endif%}
+
+    </form>
+
     <a href="{% url 'lecture:index' %}" class="btn btn-primary float-right my-4">뒤로</a>
 </div>
 <!-- 수강신청 Modal -->
@@ -41,7 +54,7 @@
                 수강 신청 하시겠습니까?
             </div>
             <div class="modal-footer">
-                <a href="{% url 'my_page:update' %}"><button type="button" class="btn btn-success">신청하기</button></a>
+                <a href="{% url 'my_page:join_lecture' lecture.id %}"><button type="button" class="btn btn-success">신청하기</button></a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
             </div>
         </div>

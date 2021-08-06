@@ -26,12 +26,13 @@ class Lecture(models.Model):
     lecture_image = models.ImageField(upload_to='lecture/images/%Y/%m/%d/', blank=True, null=True)
 
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
-    member = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='member')
-    max_member = models.IntegerField(default=10)
-
 
     member = models.ManyToManyField(User, related_name='member')
     max_member = models.IntegerField(default=10)
+    lecture_concern = models.ManyToManyField(User, related_name='concern_lecture')
+    lecture_concern_count = models.PositiveIntegerField(db_column="concern_lecture_count", default=0)
+
+
 
     def __str__(self):
         return self.class_name
