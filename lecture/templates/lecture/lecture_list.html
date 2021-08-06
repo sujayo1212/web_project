@@ -28,6 +28,17 @@
             {% endfor %}
             <a href="/lecture/category/no_category">미분류</a>
         </div>
+        <div>
+            <form id="rescan" name="rescan" action="{% url 'common:searched_lecture' %}" method="post">
+                {% csrf_token %}
+				{% include "form_errors.html" %}
+                결과내 재검색<br>
+                <input type="hidden" id="term_list" name="term_list" value="{{term_list}}">
+                <input type="text" id="sub_term" name="sub_term">
+                <button type="submit">검색</button>
+            </form>
+
+        </div>
     </div>
     <div class="album py-5 col-md-9 col-lg-10" id="main_area">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">

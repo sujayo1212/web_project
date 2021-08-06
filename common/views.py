@@ -114,7 +114,6 @@ def reset_pw(request, pk):
 
 def searched_lecture(request):
     if request.method == 'POST':
-        category = request.POST['category']
         categories = Category.objects.all()
         term_list = request.POST['term_list']
         sub_term = request.POST['sub_term']
@@ -123,12 +122,11 @@ def searched_lecture(request):
         else:
             term_list = ast.literal_eval(term_list)
         term_list.append(sub_term)
+        term_list = list(set(term_list)) #  중복 단어 삭제
         lecture_list = reduce(and_, (Lecture.objects.filter(class_name__icontains=term)
                                      | Lecture.objects.filter(subject__icontains=term)
                                      | Lecture.objects.filter(detail_subject__icontains=term)
                                      | Lecture.objects.filter(content__icontains=term) for term in term_list))
-
-        lecture_list_category = Lecture.objects.get(class_name=category)
         context = {'lecture_list': lecture_list, 'term_list': term_list, 'categories': categories}
         return render(request, './common/searched_lecture.html', context)
     else:
@@ -141,3 +139,7 @@ def searched_lecture(request):
                                      | Lecture.objects.filter(content__icontains=term) for term in term_list))
         context = {'lecture_list': lecture_list, 'term_list': term_list, 'categories': categories}
         return render(request, './common/searched_lecture.html', context)
+
+
+def contact_us(request):
+    return render(request, 'contact_us.html')

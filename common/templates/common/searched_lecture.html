@@ -17,6 +17,7 @@
             alert('검색어(' + searchValue + ')가 너무 짧습니다.');
         }
     };
+
 </script>
 <div class="row">
     <!-- Sidebar-->
@@ -29,7 +30,7 @@
             {% endfor %}
             <a href="/lecture/category/no_category">미분류</a>
         </div>
-        <div>
+        <div class="list-group" id="categories-card">
             <form id="rescan" name="rescan" action="{% url 'common:searched_lecture' %}" method="post">
                 {% csrf_token %}
 				{% include "form_errors.html" %}
@@ -38,7 +39,6 @@
                 <input type="text" id="sub_term" name="sub_term">
                 <button type="submit">검색</button>
             </form>
-
         </div>
     </div>
     <div class="album py-5 col-md-9 col-lg-10" id="main_area">
