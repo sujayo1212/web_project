@@ -26,9 +26,6 @@ class Lecture(models.Model):
     lecture_image = models.ImageField(upload_to='lecture/images/%Y/%m/%d/', blank=True, null=True)
 
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
-    member = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='member')
-    max_member = models.IntegerField(default=10)
-
 
     member = models.ManyToManyField(User, related_name='member')
     max_member = models.IntegerField(default=10)
