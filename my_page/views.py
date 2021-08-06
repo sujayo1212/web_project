@@ -22,13 +22,14 @@ def my_page(request):
         last_name = request.user.last_name
         full_name = first_name+last_name
         lectures = Lecture.objects.filter(member=user)
-
+        concerned_lectures = Lecture.objects.filter(lecture_concern=user)
         context = {
             'username': user,
             'first_name': first_name,
             'last_name': last_name,
             'full_name': full_name,
             'lectures': lectures,
+            'concerned_lectures': concerned_lectures,
 
         }
 
@@ -75,13 +76,38 @@ def join_lecture(request, id):
     return render(request, 'my_page/join_lecture.html')
 
 #수강취소
-# @login_required
-# def cancel_lecture(request, id):
-#     user =request.user
-#     lecture = Lecture.objects.get(pk=id)
-#     lecture.member.remove(user)
-#     return render(request, )
+@login_required
+def cancel_lecture(request, id):
+    user = request.user
+    lecture = Lecture.objects.get(pk=id)
+    lecture.member.remove(user)
+    return render(request, 'my_page/cancel_lecture.html')
 
+#관심등록강의
+def concerned_lecture(request):
+    user = request.user
+    concerned_lectures = Lecture.objects.filter(lecture_concern=user)
+
+    return render(request, 'my_page/concerned_lecture.html', {'concerned_lectures': concerned_lectures})
+
+
+@login_required
+@require_POST
+def lecture_concern(request, id):
+    lecture = get_object_or_404(Lecture, pk=id)
+    user = request.user
+    check_concern = lecture.lecture_concern.filter(id=user.id)
+
+    if check_concern.exists():
+        lecture.lecture_concern.remove(user.id)
+        lecture.lecture_concern_count -= 1
+        lecture.save()
+    else:
+        lecture.lecture_concern.add(user.id)
+        lecture.lecture_concern_count += 1
+        lecture.save()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 
