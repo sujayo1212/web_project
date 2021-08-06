@@ -26,7 +26,7 @@
             <div class="sidebar-heading border-bottom bg-light">전체 강의</div>
             <a href="/lecture/">전체</a>
             {% for c in categories %}
-            <a href="{{ c.get_absolute_url }}')">{{ c }}</a>
+            <a href="{{ c.get_absolute_url }}">{{ c }}</a>
             {% endfor %}
             <a href="/lecture/category/no_category">미분류</a>
         </div>
