@@ -8,5 +8,5 @@ urlpatterns = [
     path('update/', views.update, name='update'),
     path('my_lecture/', views.my_lecture, name='my_lecture'),
     path('delete/', views.delete, name='delete'),
-    path('join_lecture/', views.join_lecture, name='join_lecture'),
+    path('join_lecture/<int:id>', views.join_lecture, name='join_lecture'),
 ]

@@ -1,3 +1,4 @@
+import null as null
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -20,12 +21,17 @@ def my_page(request):
         first_name = request.user.first_name
         last_name = request.user.last_name
         full_name = first_name+last_name
+        lectures = Lecture.objects.filter(member=user)
+
         context = {
             'username': user,
             'first_name': first_name,
             'last_name': last_name,
             'full_name': full_name,
+            'lectures': lectures,
+
         }
+
         return render(request, 'my_page/my_page.html', context)
     else:
         return redirect('/common/login')
@@ -45,28 +51,38 @@ def update(request):
     return render(request, 'my_page/update.html', context)
 
 
+
+
 #나의수강정보
 def my_lecture(request):
     user = request.user
     lectures = Lecture.objects.filter(member=user)
     return render(request, 'my_page/my_lecture.html', {'lectures': lectures})
 
+
 #수강신청
-def join_lecture(request, ):
+@login_required
+def join_lecture(request, id):
     user = request.user
-    lecture = Lecture.objects.get
+    lecture = Lecture.objects.get(pk=id)
 
     if lecture.member.count() >= lecture.max_member:
         return render(request, 'my_page/max.html')
+
     else:
         lecture.member.add(user)
+        lecture.save()
     return render(request, 'my_page/join_lecture.html')
 
-#
-# #수강취소
-# def cancel_study(request, ):
-#     user = request.user
-#     lecture = Lecture.objects.get
+#수강취소
+# @login_required
+# def cancel_lecture(request, id):
+#     user =request.user
+#     lecture = Lecture.objects.get(pk=id)
+#     lecture.member.remove(user)
+#     return render(request, )
+
+
 
 
 #회원탈퇴
