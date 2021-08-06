@@ -10,6 +10,7 @@ from lecture.models import Lecture
 
 CSV_PATH = 'static/file/udacity.csv'
 
+
 with open(CSV_PATH, 'r', newline='') as csvfile:
 	data_reader = csv.DictReader(csvfile)
 	s = pd.DataFrame(data_reader)

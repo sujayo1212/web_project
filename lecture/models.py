@@ -29,6 +29,10 @@ class Lecture(models.Model):
 
     member = models.ManyToManyField(User, related_name='member')
     max_member = models.IntegerField(default=10)
+    lecture_concern = models.ManyToManyField(User, related_name='concern_lecture')
+    lecture_concern_count = models.PositiveIntegerField(db_column="concern_lecture_count", default=0)
+
+
 
     def __str__(self):
         return self.class_name
