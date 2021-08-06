@@ -109,3 +109,5 @@ def question_delete(request, question_id):
         return redirect('qna:detail', question_id=question.id)
     question.delete()
     return redirect('qna:index')
+
+
