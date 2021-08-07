@@ -1,5 +1,5 @@
 from django import forms
-from .models import Question, Answer
+from .models import Question, Answer, Comment
 
 
 class QuestionForm(forms.ModelForm):
@@ -23,3 +23,10 @@ class AnswerForm(forms.ModelForm):
             'content': '답변내용',
         }
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+        labels = {
+            'content': '댓글내용',
+        }
