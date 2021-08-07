@@ -1,4 +1,3 @@
-import null as null
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -75,6 +74,7 @@ def join_lecture(request, id):
         lecture.save()
     return render(request, 'my_page/join_lecture.html')
 
+
 #수강취소
 @login_required
 def cancel_lecture(request, id):
@@ -82,6 +82,7 @@ def cancel_lecture(request, id):
     lecture = Lecture.objects.get(pk=id)
     lecture.member.remove(user)
     return render(request, 'my_page/cancel_lecture.html')
+
 
 #관심등록강의
 def concerned_lecture(request):
