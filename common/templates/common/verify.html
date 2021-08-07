@@ -51,7 +51,7 @@
                 if (verifyAnswer === answer) {
                     document.getElementById("verifyForm").submit();
                 } else {
-                    alert("본인인증 질문에 대한 답이 틀렸습니다.");
+                    $('#wrongAnswerModal').modal('show');
                     }
             }
         </script>
@@ -87,6 +87,26 @@
                 {{error_message}}
             </div>
             {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="wrongAnswerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">본인인증 실패</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                본인인증 질문에 대한 답이 틀렸습니다.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+            </div>
         </div>
     </div>
 </div>
