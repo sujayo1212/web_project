@@ -19,7 +19,7 @@ class CustomerMessage(models.Model):
     message = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.title
+        return self.subject
 
 
 class NewsAgreedCustomer(models.Model):
