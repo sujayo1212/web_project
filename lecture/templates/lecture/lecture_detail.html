@@ -24,6 +24,7 @@
     <a href="#" class="btn btn-primary float-right my-4" data-toggle="modal" data-target="#exampleModal">강의 삭제</a>
     <a href="/lecture/{{lecture.id}}/update" class="btn btn-primary float-right my-4">강의 수정</a>
     {% endif %}
+    
     <a href="{% url 'lecture:index' %}" class="btn btn-primary float-right my-4">뒤로</a>
     <a href="#" class="btn btn-primary float-right my-4" data-toggle="modal" data-target="#exampleModal2">수강신청</a>
 
@@ -59,6 +60,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- 삭제 Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
