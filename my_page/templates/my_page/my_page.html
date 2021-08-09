@@ -13,13 +13,14 @@
             <span class="row position">Email: {{user.email}}</span><br>
         </div><br>
         <div class="col">
+
             <a href="{% url 'my_page:update' %}"><button type="button">정보 수정</button></a>
             <section id="user_delete">
-            <form action= "{% url 'my_page:delete' %}" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="회원탈퇴" class="btn btn-danger">
-            </form>
-    </section>
+                <form action= "{% url 'my_page:delete' %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="회원탈퇴" class="btn btn-danger">
+                </form>
+            </section>
         </div>
     </section>
 
@@ -29,7 +30,7 @@
       <hr class="mb-4">
         <div class="my_lecture">
             {% for lecture in lectures %}
-              <div class="">
+              <div class="col-20">
                 <div class = "">
                     <div class="row"><h3>강좌명:  {{lecture.class_name}}</h3></div>
 
@@ -44,8 +45,9 @@
 
 
     <section id="concern_lecture" class="">
-        <h5 class="concern_lecture_title">관심강의목록</h5>
-        <div class="col-100">
+        <h3 class="concern_lecture_title">관심강의목록</h3>
+        <hr class="mb-4">
+        <div class="col-20">
         {% for concerned_lecture in concerned_lectures %}
             <div class="row"><h2>강좌명:  {{concerned_lecture.class_name}}</h2></div>
         {% endfor %}
