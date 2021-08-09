@@ -151,7 +151,7 @@ def customer_message(request):
         message=request.POST['message']
     )
     message.save()
-    return HttpResponse("ForNoError")
+    return redirect('/#contact')
 
 
 def subscribe(request):
