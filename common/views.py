@@ -4,6 +4,7 @@ from django.views.generic.base import TemplateView
 from typing import Any, Dict
 from .forms import UserForm, StaffForm
 from .models import CustomUser as User
+from .models import CustomerMessage, NewsAgreedCustomer
 from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse_lazy
 from lecture.models import Lecture, Category
@@ -141,5 +142,15 @@ def searched_lecture(request):
         return render(request, './common/searched_lecture.html', context)
 
 
-def contact_us(request):
-    return render(request, 'contact_us.html')
+def customer_message(request):
+    message = CustomerMessage(
+        name=request.POST['name'],
+        email=request.POST['email'],
+        subject=request.POST['subject'],
+        message=request.POST['message']
+    )
+    message.save()
+
+
+def subscribe(request):
+    pass

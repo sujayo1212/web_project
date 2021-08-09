@@ -34,6 +34,7 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+
 </head>
 
 <body>
@@ -48,10 +49,6 @@
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
         </div>
-
-
-
-
     </div>
 </header><!-- End Header -->
 
@@ -61,7 +58,9 @@
     <div class="hero-container" data-aos="fade-up">
         <h1>Curation in SW Education</h1>
         <h2>What we curate is more important than what we learn</h2>
-        <a href="/#about" class="btn-get-started scrollto"><i class="bx bx-chevrons-down"></i></a>
+
+        <a href="#about" class="btn-get-started"><i class="bx bx-chevrons-down"></i></a>
+
     </div>
 </section><!-- End Hero -->
 
@@ -109,20 +108,17 @@
                     </div><!-- End .content-->
                 </div>
             </div>
-
         </div>
     </section><!-- End About Section -->
 
     <!-- ======= Cta Section ======= -->
     <section id="cta" class="cta">
         <div class="container" data-aos="zoom-in">
-
             <div class="text-center">
                 <h3>Call To SW Education</h3>
                 <p> Do you want to become a SW expert in a short time? Meet free coding programs selected by the SW Education Curator every day!</p>
                 <a class="cta-btn" href="/lecture/">Explore</a>
             </div>
-
         </div>
     </section><!-- End Cta Section -->
 
@@ -168,9 +164,7 @@
                         <p class="description">Get the best training with AI automatic search technology and customized optimization for free</p>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </section><!-- End Services Section -->
 
@@ -339,7 +333,8 @@
 
 
                 <div class="col-lg-6">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                    <form action="{% url 'common:customer_message' %}" method="post" role="form" class="php-email-form">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
