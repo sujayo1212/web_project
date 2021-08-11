@@ -535,6 +535,7 @@ section {
 
 .about .content p {
   margin-bottom: 30px;
+  color: #ffffff;
 }
 
 .about .content .about-btn {
@@ -601,12 +602,12 @@ section {
 
 .cta h3 {
   color: #fff;
-  font-size: 28px;
+  font-size: 50px;
   font-weight: 700;
 }
 
-.cta p {
-  color: #fff;
+.cta h4 {
+  color: #FFF;
 }
 
 .cta .cta-btn {
@@ -681,8 +682,8 @@ section {
 }
 
 .services .description {
-  font-size: 30px;
-  line-height: 20px;
+  font-size: 25px;
+  line-height: 30px;
   margin-bottom: 0;
 }
 
@@ -1319,6 +1320,77 @@ section {
   }
 }
 
+.address-single {
+  background: #ebebeb none repeat scroll 0 0;
+  padding: 70px 0;
+  position: relative;
+  text-align: center;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+  margin: 15px;
+}
+.address-single:hover {
+  background: #088A85;
+  color: #ffffff;
+}
+.icon {
+  float: left;
+  height: auto;
+}
+.icon i {
+  font-size: 28px;
+  padding-top: 32px;
+}
+.info {
+  display: inline-block;
+  float: left;
+  margin-left: 12px;
+}
+.info h3 {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.info p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+.contact-form-left > input:last-child {
+  margin-bottom: 0;
+}
+.contact-form-left > input {
+  border: 1px solid #c9c9c9;
+  color: #666666;
+  height: 38px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  width: 100%;
+}
+.input-message textarea {
+  border: 1px solid #c9c9c9;
+  height: 154px;
+  padding: 15px;
+  resize: none;
+}
+.input-message .btn-default {
+  background: #444444 none repeat scroll 0 0;
+  border: none;
+  margin-top: 12px;
+}
+.input-message .btn-default:hover {
+  background: #31B5F2;
+  color: #ffffff;
+}
+.contact-form-right .input-message textarea {
+  width: 100%;
+}
+.all-adress-info , .social-share-icon , .shop-tab-pill li {
+  display: inline-block;
+}
+.contact-form-area {
+  margin-bottom: 80px;
+}
 /*--------------------------------------------------------------
 # contact
 --------------------------------------------------------------*/
