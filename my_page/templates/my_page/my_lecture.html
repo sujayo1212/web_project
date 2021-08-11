@@ -1,24 +1,24 @@
 {% extends 'base.html' %}
 {% block main_area %}
 
+{% load static %}
 
+<link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" media="screen">
+<h1>수강강좌목록</h1>
 <section class="" id="my_lecture">
-    <div class="container">
-      <div class="row2">
+    <div class="row">
         {% for lecture in lectures %}
-            <div class="">
 
-                    <div class="row"><a href="{{ lecture.get_absolute_url }}"> <h2>강좌명:  {{lecture.class_name}}</h2></a></div>
-                    <div class="row">과목: {{lecture.subject}}</div>
-                    <div class="row">세부과목: {{lecture.detail_subject}}</div>
-                    <div class="row">수강기간: {{lecture.date}}</div>
-                    <div class="row">내용: {{lecture.content}}</div>
+            <div class="row2 ml-2"><a href="{{ lecture.get_absolute_url }}"> <h3>강좌명:  {{lecture.class_name}}</h3></a></div>
+            <div class="row2 ml-3">과목: {{lecture.subject}}</div>
+            <div class="row2 ml-3">레벨: {{lecture.level}}</div>
+            <div class="row2 ml-3">수강기간: {{lecture.period}}</div>
+            <div class="row2 ml-3">내용: {{lecture.content}}</div>
 
-            </div>
 
-            <div class="row">
-              <a href="#" class="btn btn-primary float-right my-4" data-toggle="modal" data-target="#exampleModal2" style="width:100%; max-width:180px"
->수강취소</a>
+            <a href="#" class="btn btn-primary float-right my-4 ml-3" data-toggle="modal" data-target="#exampleModal2" style="width:80%; max-width:100px">수강취소</a>
+
+                <hr class="mb-4">
                 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -38,10 +38,8 @@
                     </div>
                 </div>
                 </div>
-
         {% endfor %}
       </div>
-    </div>
 </section>
                 <div class="row2"><a href="{% url 'lecture:index' %}"><div class="col"><button type="button">강의목록보러가기</button></div></a></div>
 
