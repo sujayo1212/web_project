@@ -34,6 +34,9 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
     <style>
+    body{
+     background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    }
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -51,7 +54,13 @@
      text-decoration:none !important
      }
      #main_area{
-        padding-top:150px;
+        padding-top:87px;
+     background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+
+     }
+     #main_container{
+     background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+
      }
      ul{
        list-style:none;
@@ -61,7 +70,16 @@
 <body>
 {% include 'navbar.html' %}
 <main id="main_area" class="bg-light">
-    <div class="container bg-light">
+    <div class="breadcrumbs-area">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <img src="{% static 'images/banner1.png' %}" width="2220px" height="350px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main_container" class="container bg-light">
         <section>
             {% block main_area %}
             {% endblock %}
