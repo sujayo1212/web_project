@@ -34,9 +34,6 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
     <style>
-    body{
-     background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
-    }
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -56,9 +53,6 @@
      #main_area{
         padding-top:87px;
      }
-     #main_container{
-
-     }
      ul{
        list-style:none;
        }
@@ -66,7 +60,7 @@
 </head>
 <body>
 {% include 'navbar.html' %}
-<main id="main_area" class="bg-light">
+<main id="main_area" class="bg-white">
     <div class="breadcrumbs-area">
         <div class="row">
             <div class="col-md-12">
@@ -76,7 +70,7 @@
             </div>
         </div>
     </div>
-    <div id="main_container" class="container bg-light">
+    <div id="main_container" class="container bg-white">
         <section>
             {% block main_area %}
             {% endblock %}
