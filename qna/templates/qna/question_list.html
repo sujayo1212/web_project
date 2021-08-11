@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load qna_filter %}
+{% block title %}Community{% endblock %}
 {% block main_area %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
@@ -79,6 +80,6 @@
 <!--        {% endif %}-->
     </ul>
     <!-- 페이징처리 끝 -->
-    <a href="{% url 'qna:question_create' %}" class="btn btn-primary float-right">질문 등록하기</a>
+    <a href="{% url 'qna:question_create' %}" class="btn btn-primary float-right">Register</a>
 </div>
 {% endblock %}
