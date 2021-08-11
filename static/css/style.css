@@ -1391,6 +1391,45 @@ section {
 .contact-form-area {
   margin-bottom: 80px;
 }
+
+.shop-widget , .shopping-cart-area , .shop-widget a {
+  color: #666666;
+}
+.shop-widget-top {
+  background: #f6f6f6 none repeat scroll 0 0;
+  padding: 25px 0;
+}
+.sidebar-title {
+  font-size: 16px;
+  margin-bottom: 25px;
+  padding-bottom: 23px;
+  position: relative;
+  text-transform: uppercase;
+}
+.sidebar-title::before {
+  background: #8f8f8f none repeat scroll 0 0;
+  bottom: 0;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+.sidebar-menu li a i {
+  color: #9c9c9c;
+  margin-right: 5px;
+}
+.sidebar-menu a {
+  color: #666666;
+  display: block;
+  margin-left: 27px;
+  margin-right: 5px;
+  text-transform: uppercase;
+}
+.sidebar-menu > li {
+  line-height: 1;
+  padding: 19px 0;
+}
 /*--------------------------------------------------------------
 # contact
 --------------------------------------------------------------*/

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_lecture_list.html' %}
 {% block main_area %}
 
 <script>
@@ -14,25 +14,27 @@
 </script>
 <div class="row">
     <!-- Sidebar-->
-    <div class="border-end col-md-3 col-lg-2" id="sidebar-wrapper">
-        <div class="list-group" id="categories-card">
-            <div class="sidebar-heading border-bottom bg-light">전체 강의</div>
-            <a href="/lecture/">전체</a>
+    <div class="col-md-3 col-lg-2" id="sidebar-wrapper">
+        <ul class="list-group" id="categories-card">
+            <li class="list-group-item">전체 강의</li>
+            <li class="list-group-item"><a href="/lecture/">전체</a></li>
             {% for c in categories %}
-            <a href="{{ c.get_absolute_url }}">{{ c }}</a>
+            <li class="list-group-item"><a href="{{ c.get_absolute_url }}">{{ c }}</a></li>
             {% endfor %}
-            <a href="/lecture/category/no_category">미분류</a>
-        </div>
-        <div>
-            <form id="rescan" name="rescan" action="{% url 'common:searched_lecture' %}" method="post">
-                {% csrf_token %}
-				{% include "form_errors.html" %}
-                검색<br>
-                <input type="hidden" id="term_list" name="term_list" value="{{term_list}}">
-                <input type="text" id="sub_term" name="sub_term" style="width:100%; max-width:180px"><br>
-                <button type="submit">검색</button>
-            </form>
-        </div>
+            <li class="list-group-item"><a href="/lecture/category/no_category">미분류</a></li>
+            <li class="list-group-item">
+            <div>
+                <form id="rescan" name="rescan" action="{% url 'common:searched_lecture' %}" method="post">
+                    {% csrf_token %}
+                    {% include "form_errors.html" %}
+                    검색<br>
+                    <input type="hidden" id="term_list" name="term_list" value="{{term_list}}">
+                    <input type="text" id="sub_term" name="sub_term" style="width:100%; max-width:180px"><br>
+                    <button type="submit">검색</button>
+                </form>
+            </div>
+            </li>
+        </ul>
     </div>
     <div class="album py-5 col-md-9 col-lg-10" id="main_area">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
