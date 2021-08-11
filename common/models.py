@@ -14,7 +14,7 @@ class CustomUser(AbstractUser):
 
 class CustomerMessage(models.Model):
     name = models.CharField(max_length=50)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     subject = models.CharField(max_length=50)
     message = models.CharField(max_length=500)
 
