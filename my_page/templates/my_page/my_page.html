@@ -10,9 +10,10 @@
         <div class="shop-widget" id="categories-card">
             <aside class="widget widget-categories">
                 <ul class="list-group rounded sticky-top">
-                    <li class="list-group-item bg-light"><h2 class="sidebar-title text-center">
-                        빠른메뉴
-                    </h2>
+                    <li class="list-group-item bg-light">
+                        <h5 class="text-center">
+                            빠른메뉴
+                        </h5>
                     </li>
                     <li class="list-group-item bg-light"><i class="fa fa-angle-double-right"></i><a href="#my_page" class="smoothscroll">개인정보</a></li>
                     <li class="list-group-item bg-light"><i class="fa fa-angle-double-right"></i><a href="{% url 'my_page:update' %}">정보수정</a></li>
@@ -23,74 +24,78 @@
             </aside>
         </div>
     </div>
-
-
-
-
-    <div class="col-lg-9 mt-0 pl-5">
-        <section id="my_page">
-            <h3 id="profile">개인정보</h3>
-            <hr class="mb-4">
-            <figure class="col-2 mr-4 profile"><img src = "{% static ''%}" alt="Image" class="img-fluid rounded-circle"></figure>
+    <div class="album col-md-9 col-lg-8" id="main_area">
+        <div class="container">
             <div class="row">
-                <div class="row"><h5>아이디: {{user.username}}</h5></div>
-                <div class="row"><h5>이름: {{user.last_name}}{{user.first_name}}</h5></div>
-                <div class="row"><h5>Email: {{user.email}}</h5></div>
+                <div class="col-md-12">
+                    <div id="my_page" class="mb-4">
+                        <h3 id="profile">개인정보</h3>
+                        <hr class="mb-4">
+
+                        <figure class="col-2 mr-4 profile"><img src = "{% static ''%}" alt="Image" class="img-fluid rounded-circle"></figure>
+                        <div class="row">
+                            <div class="row"><h5>아이디: {{user.username}}</h5></div>
+                            <div class="row"><h5>이름: {{user.last_name}}{{user.first_name}}</h5></div>
+                            <div class="row"><h5>Email: {{user.email}}</h5></div>
+                        </div>
+                        <div class="btn-group">
+                            <a href="{% url 'my_page:update' %}"><button type="button" >정보수정</button></a>
+                            <form action= "{% url 'my_page:delete' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="submit" value="회원탈퇴" class="btn btn-danger" style="position:relative; left:5px; ">
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <!-- 강의 목록 -->
+                    <div id="my_lecture" class="mb-4">
+                        <h3>수강강의목록</h3>
+                        <hr class="mb-4">
+
+                        <div class="row">
+                            {% for lecture in lectures %}
+                            <div class="row"><h5>강좌명:  {{lecture.class_name}}</h5></div>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'my_page:my_lecture' %}"><button type="button" style="position:absolute left:110px; bottom:150px;">상세보기</button></a>
+                        <a href="{% url 'lecture:index' %}"><button type="button">수강신청</button></a><br>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div id="concern_lecture" class="mb-4">
+                        <h3 class="concern_lecture_title">관심강의목록</h3>
+                        <hr class="mb-4">
+                        <div class="col-20">
+                            {% for concerned_lecture in concerned_lectures %}
+                            <div class="row"><h5>강좌명:  {{concerned_lecture.class_name}}</h5></div>
+                            {% endfor %}
+                        </div>
+                        <div class="row2"><a href="{% url 'my_page:concerned_lecture' %}"><button type="button">상세보기</button></a></div><br>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div id="my_qna" class="mb-4">
+                        <h3 class="my_qna_title">나의 QnA</h3>
+                        <hr class="mb-4">
+                        <div class="col-xs-10">
+                            <!--        {% for my_question in my_questions %}-->
+                            <!--            <div class="row"><h5>질문명:  {{my_question.subject}}</h5></div>-->
+                            <!--        {% endfor %}-->
+                            <!--        </div>-->
+                            <!--        {% for my_answer in my_answers %}-->
+                            <!--        <h5>답변 {{my_answer.content}}</h5>-->
+                            <!--        {% endfor %}-->
+                            <!--        {% for my_comment in my_comments %}-->
+                            <!--        <h5>댓글 {{my_comment.content}}</h5>-->
+                            <!--        {% endfor %}-->
+                            <div class="row2"><a href="{% url 'my_page:my_qna' %}"><button type="button">상세보기</button></a></div><br>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="btn-group">
-                <a href="{% url 'my_page:update' %}"><button type="button" >정보수정</button></a>
-                <form action= "{% url 'my_page:delete' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="submit" value="회원탈퇴" class="btn btn-danger" style="position:relative; left:5px; ">
-                </form>
-            </div>
-
-        </section>
-        <!-- 강의 목록 -->
-        <section id="my_lecture">
-            <h3>수강강의목록</h3>
-            <hr class="mb-4">
-            <div class="row">
-                {% for lecture in lectures %}
-
-                <div class="row"><h5>강좌명:  {{lecture.class_name}}</h5></div>
-
-                {% endfor %}
-            </div>
-            <a href="{% url 'my_page:my_lecture' %}"><button type="button" style="position:absolute left:110px; bottom:150px;">상세보기</button></a>
-            <a href="{% url 'lecture:index' %}"><button type="button">수강신청</button></a><br>
-        </section>
-
-        <section id="concern_lecture" class="">
-            <h3 class="concern_lecture_title">관심강의목록</h3>
-            <hr class="mb-4">
-            <div class="col-20">
-                {% for concerned_lecture in concerned_lectures %}
-                <div class="row"><h5>강좌명:  {{concerned_lecture.class_name}}</h5></div>
-                {% endfor %}
-            </div>
-            <div class="row2"><a href="{% url 'my_page:concerned_lecture' %}"><button type="button">상세보기</button></a></div><br>
-        </section>
-
-        <section id="my_qna" class="">
-            <h3 class="my_qna_title">나의 QnA</h3>
-            <hr class="mb-4">
-            <div class="col-xs-10">
-                <!--        {% for my_question in my_questions %}-->
-                <!--            <div class="row"><h5>질문명:  {{my_question.subject}}</h5></div>-->
-                <!--        {% endfor %}-->
-                <!--        </div>-->
-                <!--        {% for my_answer in my_answers %}-->
-                <!--        <h5>답변 {{my_answer.content}}</h5>-->
-                <!--        {% endfor %}-->
-                <!--        {% for my_comment in my_comments %}-->
-                <!--        <h5>댓글 {{my_comment.content}}</h5>-->
-                <!--        {% endfor %}-->
-                <div class="row2"><a href="{% url 'my_page:my_qna' %}"><button type="button">상세보기</button></a></div><br>
-            </div>
-        </section>
+        </div>
     </div>
 </div>
-
 {% endblock %}
