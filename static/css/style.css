@@ -161,10 +161,12 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
   line-height: 0;
   margin-left: 5px;
+
 }
 
 .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #088A85
 }
 
 .navbar .dropdown ul {
@@ -279,12 +281,15 @@ h1, h2, h3, h4, h5, h6 {
   background-color: transparent;
   overflow-y: auto;
   transition: 0.3s;
+  float: left;
 }
 
 .navbar-mobile a {
   padding: 10px 20px;
   font-size: 15px;
   color: #ffffff;
+  float: right;
+
 }
 
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
