@@ -4,12 +4,19 @@
 {% block main_area %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-
+<style>
+    #categories-card{
+    position: -webkit-sticky !important;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    }
+</style>
 <div class="row">
     <div class="col-md-3 col-lg-2" id="sidebar-wrapper">
-        <div class="shop-widget" id="categories-card">
+        <div class="shop-widget" style="position: sticky;" id="categories-card">
             <aside class="widget widget-categories">
-                <ul class="list-group rounded sticky-top">
+                <ul class="list-group rounded">
                     <li class="list-group-item bg-light"><h2 class="sidebar-title text-center">
                         빠른메뉴
                     </h2>
