@@ -60,11 +60,11 @@
         {% for page_number in question_list.paginator.page_range %}
             {% if page_number == question_list.number %}
             <li class="page-item active" aria-current="page">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                <a class="page-link" href="?page={{ page_number }}"style="background-color:#088681; color:white;">{{ page_number }}</a>
             </li>
             {% else %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                <a class="page-link" href="?page={{ page_number }}"style="background-color:white; color:black;">{{ page_number }}</a>
             </li>
             {% endif %}
         {% endfor %}
