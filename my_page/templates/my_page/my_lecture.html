@@ -11,14 +11,14 @@
     <div class="row">
         {% for lecture in lectures %}
 
-            <div class="row2 ml-2"><a href="{{ lecture.get_absolute_url }}"> <h3>강좌명:  {{lecture.class_name}}</h3></a></div>
+            <div class="row2 ml-2"><a href="{{ lecture.get_absolute_url }}" class="text-success"> <h3>강좌명:  {{lecture.class_name}}</h3></a></div>
             <div class="row2 ml-3">과목: {{lecture.subject}}</div>
             <div class="row2 ml-3">레벨: {{lecture.level}}</div>
             <div class="row2 ml-3">수강기간: {{lecture.period}}</div>
             <div class="row2 ml-3">내용: {{lecture.content}}</div>
 
 
-            <a href="#" class="btn btn-primary float-right my-4 ml-3" data-toggle="modal" data-target="#exampleModal2" style="width:80%; max-width:100px">수강취소</a>
+            <a href="#" class="btn btn-outline-success float-right my-4 ml-3" data-toggle="modal" data-target="#exampleModal2" style="width:80%; max-width:100px">수강취소</a>
 
                 <hr class="mb-4">
                 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
@@ -43,7 +43,7 @@
         {% endfor %}
       </div>
 </section>
-                <div class="row2"><a href="{% url 'lecture:index' %}"><div class="col"><button type="button">강의목록보러가기</button></div></a></div>
+               <a href="{% url 'lecture:index' %}"><button type="button" class="btn btn-outline-success">강의목록보러가기</button></a>
 
 
 {% endblock %}
