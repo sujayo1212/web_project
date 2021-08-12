@@ -242,6 +242,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.5s;
 }
 
+
 @media (max-width: 991px) {
   .mobile-nav-toggle {
     display: block;
@@ -258,7 +259,7 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(43, 111, 142, 0.9);
+  background: transparent;
   transition: 0.3s;
 }
 
@@ -270,13 +271,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-mobile ul {
   display: block;
-  position: absolute;
   top: 55px;
   right: 15px;
   bottom: 15px;
   left: 15px;
   padding: 10px 0;
-  background-color: #fff;
+  background-color: transparent;
   overflow-y: auto;
   transition: 0.3s;
 }
@@ -288,7 +288,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
-  color: #67b0d1;
+  color: #088A85;
+  background-color: transparent;
 }
 
 .navbar-mobile .getstarted {
