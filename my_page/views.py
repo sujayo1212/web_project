@@ -128,9 +128,9 @@ def my_qna(request):
     my_answers = Answer.objects.filter(author_id=user)
     my_comments = Comment.objects.filter(author_id=user)
     context = {
-        'my_questions' : my_questions,
-        'my_answers' : my_answers,
-        'my_comments' : my_comments,
+        'my_questions': my_questions,
+        'my_answers': my_answers,
+        'my_comments': my_comments,
     }
 
 
