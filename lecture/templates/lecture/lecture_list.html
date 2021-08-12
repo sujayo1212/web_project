@@ -1,7 +1,6 @@
 {% extends 'base_lecture_list.html' %}
 {% block title %}Services{% endblock %}
 {% block main_area %}
-
 <script>
     function search(){
         let searchValue = document.getElementById('searching').value.trim();
@@ -83,7 +82,7 @@
 {% if user.is_staff %}
 <a href="{% url 'lecture:lecture_create' %}" class="btn btn-outline-success float-right">Register</a>
 {% endif %}
-<div class="pagination justify-content-center">
+<ul class="pagination justify-content-center">
     <!--    {% if page_obj.has_previous %}-->
     <!--    <a class="listbutton" href="?page=1"><button type="button" class="btn btn-dark">첫 번째 페이지</button></a>&nbsp&nbsp&nbsp-->
     <!--    {%endif%}-->
@@ -93,13 +92,13 @@
     {% for page_number in page_obj.paginator.page_range %}
     {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
     {% if page_number == page_obj.number %}
-    <div class="page-item active" aria-current="page">
-        <a class="page-link btn btn-white" href="?page={{ page_number }}">{{ page_number }}</a>
-    </div>
+    <li class="page-item active" aria-current="page">
+        <a class="page-link btn btn-white" href="?page={{ page_number }}" style="background-color:#088681; color:white;">{{ page_number }}</a>
+    </li>
     {% else %}
-    <div class="page-item">
-        <a class="page-link btn btn-white" href="?page={{ page_number }}">{{ page_number }}</a>
-    </div>
+    <li class="page-item">
+        <a class="page-link btn btn-white" href="?page={{ page_number }}"style="background-color:white; color:black;">{{ page_number }}</a>
+    </li>
     {% endif %}
     {% endif %}
     {% endfor %}
@@ -109,6 +108,6 @@
     <!--    {% if page_obj.has_next %}-->
     <!--    <a class="listbutton" href="?page={{page_obj.paginator.num_pages}}"><button type="button" class="btn btn-dark">마지막 페이지</button></a>-->
     <!--    {%endif%}-->
-</div>
+</ul>
 {% endblock %}
 
