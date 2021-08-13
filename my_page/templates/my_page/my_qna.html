@@ -2,6 +2,7 @@
 {% block title %}My Page - QnA{% endblock %}
 {% block main_area %}
 {% load static %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
 <h1>나의 QnA</h1>
 <div class="row">
@@ -14,7 +15,6 @@
             {% endfor %}<br>
         </div>
     </section>
-
     <section id="my_answer">
         <h2 id="answer">Answer</h2>
         <hr class="mb-4">
@@ -25,7 +25,6 @@
             <br>
         </div>
     </section>
-
     <section id="my_comment">
         <h2 id="comment">Comment</h2>
         <hr class="mb-4">
