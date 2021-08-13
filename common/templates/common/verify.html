@@ -44,18 +44,18 @@
     <div class="container-login100">
         <div class="wrap-login100">
             <script>
-                function verify() {
-                    verifyAnswer = document.getElementById("verifyAnswer").value;
-                    answer = document.getElementById("answer").value;
-                    if (verifyAnswer === answer) {
-                        document.getElementById("verifyForm").submit();
-                    } else {
-                        $('#wrongAnswerModal').modal('show');
-                        }
-                }
-                function closeModal() {
-                    $('#wrongAnswerModal').modal('hide');
-                }
+            function verify() {
+                verifyAnswer = document.getElementById("verifyAnswer").value;
+                answer = document.getElementById("answer").value;
+                if (verifyAnswer === answer) {
+                    document.getElementById("verifyForm").submit();
+                } else {
+                    $('#wrongAnswerModal').modal('show');
+                    }
+            }
+            function closeModal() {
+                $('#wrongAnswerModal').modal('hide');
+            }
             </script>
             {% if pk %}
             <form name="verifyForm" id="verifyForm" action="{% url 'common:verify' pk %}" method='post'>
@@ -63,13 +63,11 @@
                 {% include "form_errors.html" %}
                 <span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape" onclick="location.href='/'"></i>
-					</span>
-
+                </span>
                 <span class="login100-form-title p-b-34 p-t-27">
                     본인인증을 위한 질문에 답하여주세요<br/>
                     {{question}}
                 </span>
-
                 <div class="wrap-input100 validate-input" data-validate = "Enter Answer">
                     <input class="input100" type="hidden" name="answer" placeholder="Answer" id="answer"
                            value="{{answer}}">
@@ -77,7 +75,6 @@
 
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
                 </div>
-
                 <div class="container-login100-form-btn">
                     <button type="button" onclick="verify();" class="login100-form-btn mr-3">
                         확인
@@ -95,8 +92,6 @@
         </div>
     </div>
 </div>
-
-
 <div class="modal" id="wrongAnswerModal" tabindex="-1" role="dialog" aria-labelledby="wrongAnswerModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -115,7 +110,6 @@
         </div>
     </div>
 </div>
-
 
 <div id="dropDownSelect1"></div>
 

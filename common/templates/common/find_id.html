@@ -51,12 +51,13 @@
                 <button type="button" onclick="location.href='{% url 'common:find_id' %}'" class="login100-form-btn mr-3">
                     뒤로
                 </button>
-
             </div>
             {% else %}
-            <p style="font-size:20px;color:white">귀하의 계정은
+            <p style="font-size:20px;color:white">
+                귀하의 계정은
             <b>{{username}}</b>
-                입니다.<br></p>
+                입니다.<br>
+            </p>
             <br>
             <div class="container-login100-form-btn">
                 <button type="button" onclick="location.href='{% url 'common:find_pw' %}'" class="login100-form-btn mr-3">
@@ -73,23 +74,20 @@
                 {% include "form_errors.html" %}
                 <span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape" onclick="location.href='/'"></i>
-					</span>
-
+                </span>
                 <span class="login100-form-title p-b-34 p-t-27">
 						Find ID
-					</span>
+                </span>
                 <div class="wrap-input100 validate-input" data-validate = "Enter Email">
                     <input class="input100" type="email" name="email" placeholder="Email" id="email"
                            value="{{ form.email.value|default_if_none:'' }}">
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
                 </div>
-
                 <div class="wrap-input100 validate-input" data-validate = "Enter Last Name">
                     <input class="input100" type="text" name="last_name" placeholder="Last Name" id="last_name"
                            value="{{ form.last_name.value|default_if_none:'' }}">
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
                 </div>
-
                 <div class="wrap-input100 validate-input" data-validate = "Enter First Name">
                     <input class="input100" type="text" name="first_name" placeholder="First Name" id="first_name"
                            value="{{ form.first_name.value|default_if_none:'' }}">

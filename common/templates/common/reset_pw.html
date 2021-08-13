@@ -49,44 +49,35 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-
             {% if error_message %}
             {{error_message}}
-
             {% else %}
-
             <form name="newPasswordForm" id="newPasswordForm" action="{% url 'common:reset_pw' pk %}" method='post'>
                 {% csrf_token %}
                 {% include "form_errors.html" %}
                 <span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape" onclick="location.href='/'"></i>
-					</span>
-
+                </span>
                 <span class="login100-form-title p-b-34 p-t-27">
 						Find PW
-					</span>
-
+                </span>
                 <div class="wrap-input100 validate-input" data-validate = "Username">
                     <p class="input100">Username: {{ username }}</p>
                 </div>
-
                 <div class="wrap-input100 validate-input" data-validate = "Enter Email">
                     <p class="input100">email: {{ email }}</p>
                 </div>
-
                 <div id="password_input">
                     <div class="wrap-input100 validate-input" data-validate = "Enter Change Password">
                         <input class="input100" type="password" name="password1" placeholder="Change Password" id="password1"
                                value="{{ form.password1.value|default_if_none:'' }}">
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
-
                     <div class="wrap-input100 validate-input" data-validate = "Enter Change Password">
                         <input class="input100" type="password" name="password2" placeholder="Check Change Password" id="password2"
                                value="{{ form.password2.value|default_if_none:'' }}">
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
-
                 </div>
                 <script>
                 function pwValid() {
@@ -106,7 +97,7 @@
                 </script>
                 <div class="container-login100-form-btn">
                     <button type="button" onclick="pwValid();" class="login100-form-btn mr-3">
-                    Change
+                        Change
                     </button>
                 </div>
             </form>
@@ -114,12 +105,6 @@
         </div>
     </div>
 </div>
-<script>
-function closeModal(modalId) {
-    alert(modalId}
-    $('#{{modalId}}').modal('close');
-};
-</script>
 <div class="modal" id="differentPasswordModal" tabindex="-1" role="dialog" aria-labelledby="differentPasswordModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -175,7 +160,7 @@ function closeModal(modalId) {
                 비밀번호를 변경하였습니다.
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary"onclick="closeSuccessModal()">확인</button>
+                <button type="submit" class="btn btn-secondary" onclick="closeSuccessModal()">확인</button>
             </div>
         </div>
     </div>
