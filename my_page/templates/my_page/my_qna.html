@@ -20,7 +20,7 @@
       <hr class="mb-4">
       <div class="row">
             {% for my_answer in my_answers %}
-            <div class="row2 ml-2"><h5><a href="{{ my_answer.get_absolute_url }}" class="text-success">{{my_answer.content}} / {{my_answer.create_date}}</a></h5></div>
+            <div class="row2 ml-2"><h5><a href="{{ my_answer.question.get_absolute_url }}" class="text-success">{{my_answer.content}} / {{my_answer.create_date}}</a></h5></div>
             {% endfor %}
         <br>
       </div>
@@ -31,7 +31,11 @@
       <hr class="mb-4">
         <div class="row">
             {% for my_comment in my_comments %}
-            <div class="row2 ml-2"><h5><a href="{{ my_comment.get_absolute_url }}" class="text-success">{{my_comment.content}} / {{my_comment.create_date}}</a></h5></div>
+            {% if my_comment.question_id != NULL %}
+            <div class="row2 ml-2"><h5><a href="{{ my_comment.question.get_absolute_url }}" class="text-success">{{my_comment.content}} / {{my_comment.create_date}}</a></h5></div>
+            {% elif my_comment.answer_id != NULL %}
+            <div class="row2 ml-2"><h5><a href="{{ my_comment.answer.question.get_absolute_url }}" class="text-success">{{my_comment.content}} / {{my_comment.create_date}}</a></h5></div>
+            {% endif %}
             {% endfor %}
         </div><br>
 

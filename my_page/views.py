@@ -9,6 +9,7 @@ from common.models import CustomUser as User
 from lecture.models import Lecture
 from .forms import CustomUserChangeForm, PasswordCheckForm
 from qna.models import Question, Answer, Comment
+from qna.views import detail
 
 
 
@@ -132,7 +133,6 @@ def my_qna(request):
         'my_answers': my_answers,
         'my_comments': my_comments,
     }
-
 
     return render(request, 'my_page/my_qna.html', context)
 
