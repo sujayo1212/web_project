@@ -1,10 +1,8 @@
 {% extends 'base_lecture_list.html' %}
 {% block title %}Services - update{% endblock %}
-
 {% block main_area %}
 <form method="post" class="post-form" enctype="multipart/form-data">
     {% csrf_token %}
-    <!-- 오류표시 Start -->
     {% if form.errors %}
     <div class="alert alert-danger" role="alert">
         {% for field in form %}
@@ -15,7 +13,6 @@
         {% endfor %}
     </div>
     {% endif %}
-    <!-- 오류표시 End -->
     <div class="form-group">
         <label for="class_name">강의명</label>
         <input type="text" class="form-control" name="class_name" id="class_name"
