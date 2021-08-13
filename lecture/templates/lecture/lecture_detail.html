@@ -60,10 +60,14 @@
                                 {% csrf_token %}
                                 {% if user in lecture.lecture_concern.all %}
                                 <h6><i class="fas fa-heart fa-lg" style="color:#ed4956;"></i>
-                                <button type="submit" class="btn btn-link text-dark text-decoration-none">CANCEL WISHLIST</button></h6>
+                                    <button type="submit" class="btn btn-link text-dark text-decoration-none">CANCEL WISHLIST</button></h6>
                                 {% else %}
                                 <h6><i class="far fa-heart fa-lg" style="color:#ed4956;"></i>
-                                <button type="submit" class="btn btn-link text-dark text-decoration-none">ADD TO WISHLIST</button></h6>
+                                    {% if user.is_authenticated %}
+                                    <button type="submit" class="btn btn-link text-dark text-decoration-none">ADD TO WISHLIST</button></h6>
+                                    {% else %}
+                                    <a href="{% url 'common:login' %}"<button type="button" class="btn btn-link text-dark">ADD TO WISHLIST</button></a>
+                                    {% endif %}
                                 {% endif%}
                             </form>
                         </div>
@@ -110,7 +114,11 @@
                     수강 신청 하시겠습니까?
                 </div>
                 <div class="modal-footer">
+                    {% if user.is_authenticated %}
                     <a href="{% url 'my_page:join_lecture' lecture.id %}"><button type="button" class="btn btn-success">신청하기</button></a>
+                    {% else %}
+                    <a href="{% url 'common:login' %}"<button type="button" class="btn btn-success">신청하기</button></a>
+                    {% endif %}
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
                 </div>
             </div>
