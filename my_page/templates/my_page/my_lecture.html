@@ -8,7 +8,9 @@
 <section class="" id="my_lecture">
     <div class="row">
         {% for lecture in lectures %}
+        {% if lecture.lecture_image %}
         <figure class="col-2 my_lecture"><img src="{{ lecture.lecture_image.url}}" class="img-fluid rounded-start" alt="..." width="350px" height="350px"></figure>
+        {% endif %}
         <div class="col-4 mt-4">
             <div class="row2 "><a href="{{ lecture.get_absolute_url }}" class="text-success"> <h3>강좌명:  {{lecture.class_name}}</h3></a></div>
             <div class="row2 ">과목: {{lecture.subject}}</div>
