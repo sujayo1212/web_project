@@ -11,7 +11,6 @@ from .forms import CustomUserChangeForm, PasswordCheckForm
 from qna.models import Question, Answer, Comment
 
 
-
 # # Create your views here.
 
 #마이페이지
