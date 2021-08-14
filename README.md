@@ -3,8 +3,7 @@
 ### 요약
 - django를 이용한 MTV 패턴 기반의 웹사이트 구축
 
-![main](https://user-images.githubusercontent.com/52156247/129449105-6947a2cb-3b01-4b90-9010-751a27360e1b.png)
-
+![main](https://user-images.githubusercontent.com/52156247/129450255-12cf04b5-6e02-4e89-9434-7f9b72710876.png)
 
 - [시연 영상](https://youtu.be/UiiuZNOMpVA)
 
