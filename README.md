@@ -7,7 +7,7 @@
 
 - [시연 영상](https://youtu.be/UiiuZNOMpVA)
 
-- [PDF](https://drive.google.com/file/d/1MT9G0pTpsDtuoIORccpu5iGNpnIjz-94/view?usp=sharing)
+- [PDF](https://drive.google.com/file/d/1-Au0J4uCmTUNXPETdGo0ckkQSt5UkpNs/view?usp=sharing)
 
 --- 
 
